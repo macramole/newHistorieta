@@ -35,15 +35,16 @@
                 <a id="m_menu" 		href="javascript:void(0)"></a>
                 <a id="m_foto" 		href="<?= site_url('galeria/fotos') ?>"></a>
                 <a id="m_wallpaper" href="<?= site_url('galeria/wallpapers') ?>"></a>
-                <a id="m_contacto" 	href="<?= site_url('contacto') ?>"></a>
                 <a id="m_autores" 	href="<?= site_url('autores') ?>"></a>
                 <a id="m_museo" 	href="<?= site_url('museo') ?>"></a>
+                <a id="m_mapa" 	href="<?= site_url('mapa') ?>"></a>
+                <a id="m_contacto" 	href="<?= site_url('contacto') ?>"></a>
             </div>
             
             <a id="mapa" href="<?= site_url('mapa') ?>"><img src="images/mapa.png"/></a>
             <div id="share"><img src="images/share.png"/>
-                <a id="tweet" href="javascript:void(0)" onclick="twt_click()"><img src="images/transparent.png"/></a>
-                <a id="fb" href="javascript:void(0)" onclick="fb_click()"><img src="images/transparent.png"/></a>
+                <a id="tweet" href="https://twitter.com/CiudadaniaBA" target="_blank" ><img src="images/transparent.png"/></a>
+                <a id="fb" href="https://facebook.com/construccionciudadanaba" target="_blank" ><img src="images/transparent.png"/></a>
             </div>	
 
             <a id="pajarito" href="javascript:void(0)">

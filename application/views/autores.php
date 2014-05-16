@@ -2,7 +2,7 @@
 #pajarito, #mapa, #share { display: none; }
 #gallery { height: 1000px }
 </style>
-<link href="css/jquery.jscrollpane.css" media="screen,print" type="text/css" rel="stylesheet" />
+<link href="css/jquery.mCustomScrollbar.css" media="screen,print" type="text/css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
 <div id="menuAutores">
@@ -83,7 +83,7 @@
 <?php magico_setMainData($autor['id'], 'Autor') ?>
 
 <script type="text/javascript" src="js/jquery.mousewheel.js"></script>	  
-<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>	  
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>	  
 <script type="text/javascript">
     $( function() {
         $('.galeria #wrapper ul').width( $('.galeria #wrapper ul li').length * $('.galeria #wrapper ul li').first().width() );
@@ -106,6 +106,16 @@
             }
         });
         
-        $('.notaInnerWrapper').jScrollPane({verticalDragMaxHeight: 700});
+        $('.notaInnerWrapper').mCustomScrollbar({
+            scrollInertia: 0,
+            mouseWheelPixels: 20,
+            autoHideScrollbar: false,
+            advanced: {
+                updateOnContentResize: Boolean
+            },
+            scrollButtons:{
+                enable:true
+              }
+        });
     });		
 </script>

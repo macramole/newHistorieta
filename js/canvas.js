@@ -66,7 +66,7 @@ $(document).ready(function(){
     		return;
     	menu_busy=true;
     	if(menu_state==0) {
-    		$('#menu').animate({height:'358px'},500,function(){menu_busy=false;});
+    		$('#menu').animate({height:'380px'},500,function(){menu_busy=false;});
     		menu_state=1;
     	} else {
     		$('#menu').animate({height:'157px'},500,function(){menu_busy=false;});
@@ -162,62 +162,62 @@ function dibujarEstacion(){
 			$('#personaje').css({top:'355px',left:'246px'}).html('<img src="images/matias.png"/>').show();
 			$('#texto_home').hide();
 		}
-		if(actual==4) { //loco chavez
+		/*if(actual==4) { //loco chavez
 			$('#globa_personaje').css({top:'61px',left:'151px'}).html('<img src="images/globa_loco_chavez.png" width="350"/>');
 			$('#personaje').css({top:'232px',left:'272px'}).html('<img src="images/loco_chavez.png"/>').show();
 			$('#texto_home').hide();
-		}
-		if(actual==5) { //divito
+		}*/
+		if(actual==4) { //divito
 			$('#globa_personaje').css({top:'83px',left:'167px'}).html('<img src="images/globa_divito.png" width="350"/>');
 			$('#personaje').css({top:'240px',left:'230px'}).html('<img src="images/divito.png"/>').show();
 			$('#texto_home').hide();
 		}
-		if(actual==6) { //don fulgencio
+		if(actual==5) { //don fulgencio
 			$('#globa_personaje').css({top:'178px',left:'193px'}).html('<img src="images/globa_don_fulgencio.png" width="350"/>');
 			$('#personaje').css({top:'270px',left:'190px'}).html('<img src="images/don_fulgencio.png"/>').show();
 			$('#texto_home').hide();
 		}
-		if(actual==7) { //clemente
+		if(actual==6) { //clemente
 			$('#globa_personaje').css({top:'170px',left:'227px'}).html('<img src="images/globa_clemente.png" width="350"/>');
 			$('#personaje').css({top:'358px',left:'196px'}).html('<img src="images/clemente.png"/>').show();
 			$('#texto_home').hide();
 		}
-		if(actual==8) { //patoruzu
+		if(actual==7) { //patoruzu
 			$('#globa_personaje').css({top:'113px',left:'342px'}).html('<img src="images/globa_patoruzu.png" width="350"/>');
 			$('#personaje').css({top:'233px',left:'246px'}).html('<img src="images/patoruzu.png"/>').show();
 			$('#texto_home').hide();
 		}
-		if(actual==9) { //gaturro
+		if(actual==8) { //gaturro
 			$('#globa_personaje').css({top:'170px',left:'118px'}).html('<img src="images/globa_gaturro.png" width="350"/>');
 			$('#personaje').css({top:'320px',left:'188px'}).html('<img src="images/gaturro.png"/>').show();
 			$('#texto_home').hide();
 		}
-        if(actual==10) { //don nicola
+        if(actual==9) { //don nicola
 			$('#globa_personaje').css({top:'80px',left:'218px'}).html('<img src="images/Globa-Don-Nicola.png" width="350"/>');
 			$('#personaje').css({top:'212px',left:'145px'}).html('<img src="images/Don-Nicola.png" width="400"/>').show();
 			$('#texto_home').hide();
 		}
-		if(actual==11) { //diogenes
+		if(actual==10) { //diogenes
 			$('#globa_personaje').css({top:'170px',left:'235px'}).html('<img src="images/Globa-Diogenes-y-el-Linyera.png" width="350"/>');
 			$('#personaje').css({top:'225px',left:'170px'}).html('<img src="images/Diogenes-y-el-Linyera.png" width="400"/>').show();
 			$('#texto_home').hide();
 		}
-		if(actual==12) { //jirafa
+		if(actual==11) { //jirafa
 			$('#globa_personaje').css({top:'0px',left:'275px'}).html('<img src="images/Globa-Jirafa-Mordillo.png" width="350"/>');
 			$('#personaje').css({top:'125px',left:'157px'}).html('<img src="images/Jirafa-Mordillo.png" width="400"/>').show();
 			$('#texto_home').hide();
 		}		
-		if(actual==13) { //negrazon
+		if(actual==12) { //negrazon
 			$('#globa_personaje').css({top:'127px',left:'237px'}).html('<img src="images/Globa-Negrazon-y-Chaveta.png" width="350"/>');
 			$('#personaje').css({top:'220px',left:'140px'}).html('<img src="images/Negrazon-y-Chaveta.png" width="400"/>').show();
 			$('#texto_home').hide();
 		}
-		if(actual==14) { //Inodoro Pereyra
+		if(actual==13) { //Inodoro Pereyra
 			$('#globa_personaje').css({top:'118px',left:'209px'}).html('<img src="images/Globa-Inodoro-Pereyra.png" width="350"/>');
 			$('#personaje').css({top:'235px',left:'150px'}).html('<img src="images/Inodoro-Pereyra.png" width="400"/>').show();
 			$('#texto_home').hide();
 		}
-		if(actual==15) { //Langostino-y-Corina
+		if(actual==14) { //Langostino-y-Corina
 			$('#globa_personaje').css({top:'57px',left:'230px'}).html('<img src="images/Globa-Langostino-y-Corina.png" width="350"/>');
 			$('#personaje').css({top:'160px',left:'145px'}).html('<img src="images/Langostino-y-Corina.png" width="400"/>').show();
 			$('#texto_home').hide();

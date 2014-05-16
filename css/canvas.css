@@ -174,7 +174,7 @@ section#autores div.autor{
 	/*background-image:url('images/autor.png');*/
 	background-color: white;
 	border-radius: 10px;
-	border: 1px solid #2F44A9;
+	border: 1px solid black;
 	width:747px;
     min-height: 190px;
 	position:relative;
@@ -212,7 +212,8 @@ section#autores div.notaWrapper{
 	margin-top: 15px;
     background-color: #FFF;
     border-radius: 20px;
-    width: 100%;
+    border: 1px solid black;
+    width: 99.7%;
     height: 760px;
     overflow: auto;
     

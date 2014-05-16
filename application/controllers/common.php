@@ -6,7 +6,7 @@ class Common extends MasterController
 	public function index()
 	{
 		$this->addContentPage('home');
-        $this->addFondo(1, 16);
+        $this->addFondo(1, 15);
 		$this->show();
 	}
     

@@ -46,6 +46,5 @@ class Autores extends MasterController
         }
         else
             redirect();
-        
     }
 }
