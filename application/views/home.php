@@ -1,3 +1,6 @@
+<style>
+    #inauguracion { display: none; }
+</style>
 <section class="home">
 	<div id="texto_home"><img src="images/texto.png"/></div>
 	<a id="paseo" href="controller.php"><img src="images/logo262.png"/></a>
