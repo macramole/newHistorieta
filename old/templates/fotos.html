@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+   	<meta http-equiv="content-language" content="es" />
+ 	
+	<title>Paseo de la historieta</title>
+	<link href="../css/canvas.css" media="screen,print" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../js/jquery-1.7.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="../js/canvas.js"></script>
+	<script type="text/javascript" src="../plupload/js/plupload.full.js"></script>
+	#meta#
+	<script type="text/javascript" src="../galleria/galleria-1.2.7.min.js"></script>
+    <style>
+    #galleria {position: absolute;top: 147px;left: 83px;width: 862px;height: 590px;}
+    #pajarito {top: -28px;left:800px}
+    #upload {position: absolute;top: 0px;left: 277px;width: 490px;height: 60px;background: url(../images/upload.png);}
+    .linea {margin-bottom:5px;}
+    #tweet {height: 32px;width: 33px;position: absolute;top: 21px;left: 21px;z-index: 2;}
+	#fb {height: 32px;width: 34px;position: absolute;top: 20px;left: 60px;z-index: 2;}
+	#up {width: 168px;position: absolute;top: 18px;left: 124px;z-index: 2;}
+	#down {width: 168px;position: absolute;top: 18px;left: 319px;z-index: 2;}
+	
+	#uploader {padding: 20px;position: absolute;top: 170px;left: 175px;font: 14pt KiComicRegular;width: 663px;height: 479px;text-align: left;background: url(../images/marconegroyblanco.png);display:none;}
+	#uploader a {margin-right:20px;}
+	.nota {margin-top: 20px;margin-bottom: 20px;}
+    input {width: 400px;font:12pt KiComicRegular;}
+    #pickfiles, #uploadfiles {display:none;}
+    #filelist {border:solid 1px #c0c0c0; border-radius:5px; margin:10px;padding:5px;}
+    </style>
+</head>
+<body>
+
+<div id="gallery">
+	<div id="slider">
+		<div class="slide"><img id="f1" src="../images/fondos/fondo10.png" width="960" height="770"/></div>
+	</div>
+
+
+	<!-- Elementos fijos -->
+	<div id="menu">
+		<a id="m_home" 		href="controller.php"></a>
+		<a id="m_menu" 		href="javascript:void(0)"></a>
+		<a id="m_foto" 		href="controller.php?op=goFoto"></a>
+		<a id="m_wallpaper" href="controller.php?op=goWallpaper"></a>
+		<a id="m_contacto" 	href="controller.php?op=goContacto"></a>
+		<a id="m_autores" 	href="controller.php?op=goAutores"></a>
+		<a id="m_museo" 	href="controller.php?op=goMuseo"></a>
+	</div>
+	<a id="mapa" href="controller.php?op=goMapa"><img src="../images/mapa.png"/></a>
+		
+	<a id="pajarito" href="javascript:void(0)">
+		<img id="globa_pajarito" src="../images/globa_trivia.png"/>
+		<img id="vuelo" src="../images/pajarito-animado.gif"/>
+	</a>
+
+	<div id="ppal">		
+		<div id="galleria"></div>
+	
+		<div id="upload">
+			<a id="tweet" href="javascript:void(0)" onclick="twt_click()"><img src="../images/transparent.png"/></a>
+			<a id="fb" href="javascript:void(0)" onclick="fb_click()"><img src="../images/transparent.png"/></a>
+			<a id="up" href="javascript:void(0)" onclick="upload()"><img src="../images/transparent.png"/></a>
+			<a id="down" href="javascript:void(0)" onclick="download()"><img src="../images/transparent.png"/></a>
+		</div>
+	</div>
+	
+	<div id="uploader">
+    	<p>Subí tu foto:</p>
+    	<div class="nota">Para poder subir las fotos debes dejarnos tu nombre y mail de contacto. Las mismas serán publicadas en esta página una vez aprobadas por el moderador. 
+    	Al subir las fotos se aceptan estos <a href="../privacy.html">términos y cóndiciones.</a><br>
+    	Solo se pueden subir archivos de fotos de hasta 10MB de tamaño.</div>	
+    	<div id="registro">
+			<div class="linea">Tu nombre: <input id="nombre"></div>
+			<div class="linea">Tu correo: <input id="correo"></div>
+		</div>
+     	<div id="filelist">Fotos a subir:<br></div>
+    	<br />
+     	<div id="cola"> </div>
+    	
+    	<a id="validar" href="javascript:void(0)" onclick="validarUpload();">Iniciar subida de fotos</a>
+	    <a id="pickfiles" href="javascript:void(0);">Agregar foto</a>
+    	<a id="uploadfiles" href="javascript:void(0)" onclick="uploader.start()">Iniciar subida</a> 
+	</div>
+
+	<script type="text/javascript">
+		//Trato de obtener las fotos...
+	    var r = $.ajax({
+	    	url:'controller.php',
+	    	dataType:'json',
+	    	data: {'op':'fotosCargadas'}
+	    });
+	    
+	    r.done( function(json) {
+	    	var conf = {
+	    	    	imageCrop: true,
+	    	    	transition: 'fade',
+	    	    	lightbox: false,
+	    	    	dataSource: {}//json
+	    		};
+	    		Galleria.loadTheme('../galleria/themes/classic/galleria.classic.min.js');
+	        	Galleria.run('#galleria',conf);
+	    });
+	    r.fail( function(jqXHR, textStatus) { 
+	    	msg("Error","No se pudo traer la lista de fotos: " + textStatus); 
+	    });
+	    
+	    var uploader = null;
+	    var cant = 0;
+	    
+	    function upload() {
+	    	$('#ppal').hide();
+	    	$('#filelist').hide().html("Fotos a subir:<br>");
+	    	$('#cola').html("");
+	    	$('#pickfiles').hide();
+	    	$('#uploadfiles').hide();
+	    	$('#uploader').show();	
+	    	cant = 0;
+	    	
+	    	if($('#nombre').val()!="") {
+	    		$('#pickfiles').show();
+		    	$('#uploadfiles').show();
+		    	$('#filelist').show();
+		    	createUploader();
+	    	}	    	
+	    	return false;	
+	    }
+	    
+	    function validarUpload() {
+    		var n = $('#nombre').val();
+    		var c = $('#correo').val();
+    		if(n=="") {
+    			msg("Atención","Debés completar el nombre para avanzar");
+    			return false;
+    		}
+    		if(c=="") {
+    			msg("Atención","Debés completar el correo electrónico para avanzar");
+    			return false;
+    		}
+    		
+    		var r = $.ajax({
+    		   	url:'controller.php',
+    		   	dataType:'json',
+    		   	data: {'op':'usuarioFotos','nombre':n,'correo':c}
+    	    });
+    		r.done(function(json) { 
+    			if(json.status=="ok") {
+    		    	$('#validar').hide();
+    		    	$('#registro').hide();
+    		    	$('#pickfiles').show();
+    		    	$('#uploadfiles').show();
+    		    	$('#filelist').show();    	
+    		    	
+					createUploader();
+    			} else {
+    				msg("Error", "Se ha producido un error al registrar tus datos. Intentá nuevamente en unos minutos.");
+    			}
+    		});
+    		r.fail(function(jqXHR, textStatus) { 
+    			msg("Error", "Se ha producido un error al registrar tus datos. Intentá nuevamente en unos minutos."); 
+    		});
+    		
+    		return false;
+
+	    } 
+	    
+	    function createUploader() {
+	    	uploader = new plupload.Uploader({
+		    	runtimes : 'gears,html5,flash,silverlight,browserplus',
+		        browse_button : 'pickfiles',
+		        max_file_size : '10mb',
+		        url : 'upload.php',
+		        flash_swf_url : '../plupload/js/plupload.flash.swf',
+		        silverlight_xap_url : '../plupload/js/plupload.silverlight.xap',
+		        filters : [
+		            {title : "Imágenes", extensions : "jpg,jpeg,gif,png"}
+		        ]
+		    });
+
+		    
+		    uploader.bind('FilesAdded', function(up, files) {
+		        for (var i in files) {
+		            $('#filelist').append('<div id="' + files[i].id + '">' + files[i].name + ' (' + plupload.formatSize(files[i].size) + ') <b></b></div>');
+		        }
+		    });
+		    
+		    uploader.bind('UploadProgress', function(up, file) {
+		        document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+		    });
+		    
+		    uploader.bind('Error', function(up, args) {
+		        msg("Error",args.code + ': ' + args.message);
+		    });
+		    
+		    uploader.bind('QueueChanged', function(up) {
+		    	$('#cola').html('Archivos en cola: ' + uploader.files.length);
+		    });
+
+		    uploader.bind('FileUploaded', function(up, file, info) {
+		    	cant++;
+		    	if( uploader.files.length == cant ) {
+		    		msg("Gracias!","Se han subido las fotos al sitio. El moderador revisará el contenido y en breve estará disponible en esta sección.");
+		    		$('#uploader').hide();
+		    		$('#ppal').show();
+		    	} 
+		    });
+
+	    	uploader.init();
+	    }
+	    
+	    function download() {
+	    	msg("Ayuda", "Para descargar tu foto, buscá la misma en la galería y haz un click sobre ella.");
+	    	return false;
+	    }
+	    
+	</script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+   	<meta http-equiv="content-language" content="es" />
+ 	
+	<title>Paseo de la historieta</title>
+	<link href="../css/canvas.css" media="screen,print" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../js/jquery-1.7.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="../js/canvas.js"></script>
+	
+	#meta#
+
+    <style>
+    #share {top:10px;left:182px;}
+    #dialogo, #dialogo2, #dialogo3 {position: absolute;top: 193px;left: 254px;font:14pt KiComicRegular;width:700px;height:520px;text-align:left;}
+    #dialogo2, #dialogo3 {background: url(../images/marconegroyblanco.png);}
+	#dialogo #cont, #dialogo2 #cont, #dialogo3 #cont {padding:20px;}
+	#dialogo #cont div, #dialogo2 #cont div, #dialogo3 #cont div {margin-top:10px;}
+	#acciones a {float:left;}
+	#acciones {padding-left:300px;}
+	#app {width: 580px;}	
+	
+	input, select, option {font:12pt KiComicRegular;}
+	#casoM, #casoF, #intro, #selector_amigos {display:none;}
+	
+	#acciones a {float:left;}
+	#acciones {padding-left:300px;}
+
+	#cancela {height:30px;width:102px;background:url(../images/can_sig.png);background-position:0px -13px}
+	#sigue 	 {height:40px;width:102px;background:url(../images/can_sig.png);background-position:0px -43px}
+
+	#inicio {position:absolute;height:30px;width:90px;background:url(../images/ir_a_inicio.png);background-position:0px 0px}
+	#otra 	{position:absolute;height:30px;width:90px;background:url(../images/otra_postal.png);background-position:0px 0px;left:160px;}
+	
+	
+	#espera {text-align:center;color:#888;}
+	#intro img,#intro p {float:left;}
+	#intro {height:50px;}
+	#intro p {margin-left:20px;}
+	#lista_amigos {width:100%; height:75px;margin-bottom:10px;}
+	#f_ant {width:30px; height:75px; float:left; background: url(../images/anterior.png) no-repeat;}
+	#f_sig {width:20px; height:75px; float:left; background: url(../images/siguiente.png) no-repeat;margin-left:10px;}
+	#faces {width:540px; height:60px; overflow:hidden;float:left; margin:0px!important;}
+	#facelist {width:auto; height:60px;margin-bottom:5px;margin-top:0px!important;}
+	#facelist a {width:60px; height:60px; float:left;}
+	#facelist a img {width:50px; height:50px;padding:5px;}
+	#facelist a:hover {background:#ccc;}
+	#nombre_amigo {height:25px;color:#888;}
+	
+	#postal {width: 460px;margin-left: 96px;height:345px;}
+	.espera {text-align:center;color:#888;}	
+    #pajarito {top: 59px;}
+    </style>
+</head>
+<body>
+
+<div id="gallery">
+	<div id="slider">
+		<div class="slide"><img id="f1" src="../images/fondos/fondo15.png" width="960" height="770"/></div>
+	</div>
+
+<!-- Elementos fijos -->
+	<div id="ba"><img src="../images/ba.png"/></div>
+	<div id="menu">
+		<a id="m_menu" 		href="#1"></a>
+		<a id="m_foto" 		href="controller.php?op=goFoto"></a>
+		<a id="m_wallpaper" href="controller.php?op=goWallpaper"></a>
+		<a id="m_contacto" 	href="controller.php?op=goContacto"></a>
+		<a id="m_autores" 	href="controller.php?op=goAutores"></a>
+		<a id="m_museo" 	href="controller.php?op=goMuseo"></a>
+		<a id="m_mapa" 		href="controller.php?op=goMapa"></a>
+	</div>
+	<a id="mapa" href="controller.php?op=goMapa"><img src="../images/mapa.png"/></a>
+	<div id="share"><img src="../images/share.png"/>
+		<a id="tweet" href="javascript:void(0)" onclick="twt_click()"><img src="../images/transparent.png"/></a>
+		<a id="fb" href="javascript:void(0)" onclick="fb_click()"><img src="../images/transparent.png"/></a>
+	</div>	
+		
+	<a id="pajarito" href="controller.php?op=goAppEnvio">
+		<div id="globa_pajarito"><img src="../images/textopajarito1.png" /></div>
+		<img id="vuelo" src="../images/pajarito-animado.gif"/>
+	</a>
+				
+<!-- Primera pantalla vas a compartir por Facebook -->				
+	<div id="dialogo">
+		<div id="cont">
+			<img id="app" src="../images/presentaaplicacion.png"/>
+			<div id="acciones">
+				<a id="cancela" href="controller.php?op=goHome"></a>
+				<a id="sigue" href="javascript:void(0)" onclick="step2()"></a>
+			</div> 
+		</div>
+	</div>
+
+
+
+<!-- Segunda  pantalla elije a tu amigo -->				
+	<div id="dialogo2" class="ocultar"><div id="cont">
+		<div id="intro"></div>
+		<div>Enviaremos una postal personalizada del día del amigo. Para ello necesitaremos algunos datos básicos.</div>
+		<div id="espera">Esperando a Facebook...<br/><img src="../images/loading2.gif"/></div>
+		
+		<div id="selector_amigos">
+			<div id="amigos">¿A qué amig@ le enviamos la postal?</div>
+			<div id="lista_amigos">
+				<a id="f_ant" href="#1"></a>
+				<div id="faces"><div id="facelist"></div></div>
+				<a id="f_sig" href="#1"></a>
+			</div>
+			<div id="nombre_amigo"></div>
+		</div>
+		
+		<div id="casoM"><p>¿Cómo es tu amigo?</p><br/> 
+			<span>
+				<input type="radio" id="M1" name="caso">Futbolero, irónico, burlón<br/>
+				<input type="radio" id="M2" name="caso">Generoso, valiente, solidario y justiciero<br/>
+				<input type="radio" id="M3" name="caso">Canchero, chamuyero y amante de la noche<br/>
+				<input type="radio" id="M4" name="caso">Inocente, bonachón y con espíritu de niño<br/>
+				<input type="radio" id="M5" name="caso">Condescendiente y políticamente correcto
+			</span>
+		</div>
+		<div id="casoF"><p>¿Cómo es tu amiga?</p><br/> 
+			<span>
+				<input type="radio" id="F1" name="caso">Glotona, la que todos los días comienza la dieta<br/>
+				<input type="radio" id="F2" name="caso">Rebuscada, celosa e inteligente<br/>
+				<input type="radio" id="F3" name="caso">Glamorosa, sensual y femenina<br/>
+				<input type="radio" id="F4" name="caso">Divertida, gamba y trasnochera<br/>
+				<input type="radio" id="F5" name="caso">De pocas pulgas, temperamental y justiciera
+			</span>
+		</div>
+
+		<div id="acciones">
+			<a id="cancela" href="controller.php?op=goHome"></a>
+			<a id="sigue" href="javascript:void(0)" onclick="step3()"></a>
+		</div> 
+		
+	</div></div>
+
+<!-- Tercera pantalla te gusta la postal? -->				
+	<div id="dialogo3" class="ocultar"><div id="cont">
+		<div id="msg">¿Que te parece esta postal para tu amigo?</div>
+		<div>
+			<img id="postal" />
+		</div>
+
+		<div id="acciones">
+			<a id="cancela" href="controller.php?op=goHome"></a>
+			<a id="sigue" href="javascript:void(0)" onclick="siguiente()"></a>
+		</div> 
+	</div></div>	
+</div>
+
+
+
+<script type="text/javascript">
+
+
+function step2() {
+	$('#dialogo').hide();
+	$('#dialogo2').show();
+	return false;
+}
+
+function step3() {
+	if(!amigo) {
+		msg("Completa mas datos","Para avanzar, por favor haz un click sobre la foto de tu amig@.");
+		return false;		
+	}
+	
+	if( $('input[name=caso]:checked').length==0 ) {
+		msg("Completa mas datos","Para avanzar, por favor indica como es tu amig@.");
+		return false;
+	}
+	var postal = $('input[name=caso]:checked').attr('id'); 
+	
+	//Valido la elección de la postal
+	$('#dialogo2').hide();
+	$('#dialogo3').show();
+
+	var r = $.ajax({
+	   	url:'controller.php',
+	   	dataType:'json',
+	   	data: {'op':'getPostal', 'p':postal, 'f':amigo.first_name, 'l':amigo.last_name, 'i':amigo.id}
+	})	
+	.done(function(json) { 
+		if( json.genero=="M")
+			$('#msg').html("¿Querés enviar esta postal a tu amigo " + amigo.first_name + "?");
+		else
+			$('#msg').html("¿Querés enviar esta postal a tu amiga " + amigo.first_name + "?");
+	
+		$('#postal').attr('src','../images/postales/'+json.postal);
+		return false;
+	})
+	.fail(function(jqXHR, textStatus) { 
+		msg("Error", "Se ha producido un error al interactuar con Facebook. Intentá nuevamente en unos minutos.") 
+	});
+	
+	return false;
+}
+
+//Pido los datos de los amigos de la persona logeada
+var amigos = [];
+var fb_url = "";
+var r = $.ajax({
+   	url:'controller.php',
+   	dataType:'json',
+   	data: {'op':'getFBData'}
+});
+r.done(function(json) { 
+	if(json.status=="ok") {
+		$('#espera').hide();
+		$('#intro').html('<img src="https://graph.facebook.com/'+json.id+'/picture"><p>Hola '+json.first_name+'!</p>').show();
+		
+		//Cargo los amigos
+		var b = "";
+		amigos = json.friends.data;
+		cant = amigos.length;
+		for(var j=0;j<amigos.length;j++) {
+			b+='<a x="'+j+'" href="javascript:void(0)" onclick="a('+j+')"><img src="https://graph.facebook.com/' + amigos[j].id + '/picture"/></a>';
+		}
+		$('#facelist').html(b);
+		$('#selector_amigos').show();
+		return false;
+	} 
+	
+	if(json.status=="login") {
+		fb_url = json.url;
+		msg("Ingreso a Facebook","Para continuar deberás ingresar a Facebook. La primera vez te pediremos que autorices la aplicación del Paseo de la Historieta.",true,logToFacebook);	
+	}
+	else 
+	{
+		msg("Error","Facebook no reconoce las credenciales del usuario. Intentá ingresar nuevamente.");
+	}
+});
+r.fail(function(jqXHR, textStatus) { 
+	msg("Error", "Se ha producido un error al interactuar con Facebook. Intentá nuevamente en unos minutos.") 
+});
+
+//Ingresar al login de Facebook
+function logToFacebook() {
+	document.location = fb_url;
+}
+
+//Accion en el click sobre el avatar de un amigo
+function a(x) {
+	$('#nombre_amigo').html(amigos[x].name);
+	amigo = amigos[x];
+	
+	//Muestro el cartel de espera
+	$('#selector_amigos').hide();
+	$('#espera').show();
+	
+	//Llamo al server
+	var r = $.ajax({
+	   	url:'controller.php',
+	   	dataType:'json',
+	   	data: {'op':'usuarioFacebook', 'id':amigo.id}
+	});
+	
+	r.done(function(json) { 
+		amigo = json;
+		$('#espera').hide();
+		if(json.gender) {
+			
+			if(json.gender=="female") {
+				$('#casoF').show();
+				$('#casoF p').html("¿Cómo es tu amiga "+amigo.first_name+"?");
+			} else {
+				$('#casoM').show();
+				$('#casoM p').html("¿Cómo es tu amigo "+amigo.first_name+"?");
+			}
+		} else {
+			msg("Error","Facebook no reconoce las credenciales del usuario. Intentá ingresar nuevamente.");
+		}
+	});
+	
+	r.fail(function(jqXHR, textStatus) { 
+		$('#espera').hide();
+		msg("Error", "Se ha producido un error al interactuar con Facebook. Intentá nuevamente en unos minutos.") 
+	});
+	
+	return false;
+}
+
+
+//Slider de facebook
+var actual = 0;
+var cant = 0;
+var amigo = null;
+
+//Bloque anterior
+$('#f_ant').click(function(e){
+	if(actual>5) {
+		actual-=5;
+	} else {
+		actual=cant-1;
+	}
+	$('#facelist').stop().animate({marginLeft:-(actual*60)+'px'},450);
+    e.preventDefault();
+});
+
+//Bloque siguiente
+$('#f_sig').click(function(e){
+	if(actual<(cant-6)) {
+		actual+=5;
+	} else {
+		actual=0;
+	}
+	$('#facelist').stop().animate({marginLeft:-(actual*60)+'px'},450);
+    e.preventDefault();
+});
+
+//Mostrar el nombre de la persona al pasar por encima
+$('#facelist a').live('hover',function(e){
+	var x = $(this).attr('x');
+	$('#nombre_amigo').html(amigos[x].name);
+});
+
+//Mandar la postal en Facebook
+function siguiente() {
+	msg("Aguardá un momento por favor",'<div class="espera">Esperando a Facebook...<br/><img src="../images/loading2.gif"/></div>',false);
+	
+	var r = $.ajax({
+	   	url:'controller.php',
+	   	dataType:'json',
+	   	data: {'op':'postearFacebook'}
+    });
+	r.done(function(json) { 
+		if(json.status=="ok") {
+			//Mensaje de gracias! posteate otro.
+			msg("Envío completado", "Envía otra postal a más amigos <br/> " + 
+					"<div id='acciones'><a id='inicio' href='controller.php'></a> " + 
+					"<a id='otra' href='javascript:void(0)' onclick='otroPost()'></a></div>",false);			
+		} else {
+			msg("Error", "Se ha producido un error al enviar la postal. Intentá nuevamente en unos minutos.");
+		}
+	});
+	r.fail(function(jqXHR, textStatus) { 
+		msg("Error", "Se ha producido un error al enviar la postal. Intentá nuevamente en unos minutos."); 
+	});
+	return false;
+}
+
+//Resetar y volver a la pantalla inicial
+function otroPost() {
+	$('#popup').remove();
+	$('#curtain').remove();
+	$('#dialogo3').hide();
+	$('#selector_amigos').show();
+	amigo = null;
+	
+	$('#casoM').hide();
+	$('#casoF').hide();
+	
+	$('#dialogo2').show();
+	return false;
+}
+
+</script>
+
+</body>
+</html>

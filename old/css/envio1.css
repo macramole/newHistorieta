@@ -1,0 +1,69 @@
+@CHARSET "UTF-8";
+
+.ocultar {display:none;}
+body {font:11pt Arial,Helvetica;background: #56C3CE;text-align:center;margin:0px;}
+
+#menu {position:absolute; top: 110px;left: 42px;width: 117px;height: 40px; cursor:pointer;}
+#ba {position:absolute; top: 0px;left: 37px;width: 128px;height: 153px;cursor:pointer;}
+#mapa {position:absolute;top: 735px;left: 45px;width: 100px;height: 37px;cursor: pointer;}
+
+#pajarito {position:absolute;top: 76px;left: 186px;width: 100px;height: 37px;cursor: pointer;}
+
+#formulario {position:absolute;top: 180px;left: 170px;}
+
+#twitter {position: absolute;
+top: 340px;
+left: 208px;
+width: 145px;
+height: 186px;
+cursor: pointer;}
+
+#facebook {position: absolute;
+top: 340px;
+left: 378px;
+width: 145px;
+height: 186px;
+cursor: pointer;}
+
+#email {position: absolute;
+top: 340px;
+left: 553px;
+width: 180px;
+height: 186px;
+cursor: pointer;} 
+
+#gallery {
+	margin:auto;
+	padding:0px;
+	position:relative;
+	
+	/* CSS3 Box Shadow */
+    -moz-box-shadow:3px 3px 8px #AAAAAA;
+    -webkit-box-shadow:3px 3px 8px #AAAAAA;
+    box-shadow:3px 3px 8px #AAAAAA;
+ 
+    /* CSS3 Rounded Corners */
+    -moz-border-radius-bottomleft:4px;
+    -webkit-border-bottom-left-radius:4px;
+    border-bottom-left-radius:4px;
+ 
+    -moz-border-radius-bottomright:4px;
+    -webkit-border-bottom-right-radius:4px;
+    border-bottom-right-radius:4px;
+ 
+    border:1px solid #56C3CE;  
+    width:1025px;
+	overflow:hidden;
+}
+
+#slider {
+	height: 770px;
+	width:1025px;
+	overflow:hidden;
+}
+
+.slide {
+	float:left;
+}
+
+

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+   	<meta http-equiv="content-language" content="es" />
+ 	
+	<title>Paseo de la historieta</title>
+	<link href="../css/canvas.css" media="screen,print" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../js/jquery-1.7.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="../js/canvas.js"></script>
+	
+	#meta#
+    
+    <style>
+    #share {top:10px;left:210px;}
+    
+    .formulario {padding: 20px;position: absolute;top: 188px;left: 129px;width: 656px;height: 478px;text-align: left;background: url(../images/marconegroyblanco.png);}
+    .titulo {font-size:20px;}
+    .nota {margin-top: 20px;margin-bottom: 20px;}
+    input {width: 400px;font:12pt KiComicRegular;}
+    #quien .formulario .continuar {top: 188px;left: 281px;}
+    .privacidad {position: relative;top: 290px;}
+    #resultado .formulario .compartir {top: 243px;left: 260px;}
+    .linea {margin-bottom:5px;}
+    #compartir .formulario .continuar {top: 180px;left: 395px;}
+    #compartir .formulario #invitacion_ok {margin-top: 80px;}
+    #compartir .formulario .privacidad {top: 210px;}
+    
+    #trivia, #resultado, #compartir {display:none;}
+    #eventos {position:absolute; top: 153px;left: 200px;width:700px;height:500px;text-align:left;}
+    #larguirucho {position: absolute;top: 225px;left: 25px;width: 166px;height: 227px;background: url(../images/larguirucho2.png);}
+	.continuar {position: absolute;top: 637px;left: 777px;width: 86px;height: 30px;background: url(../images/enviar.png);}
+	.compartir {position: absolute;top: 590px;left: 774px;width: 180px;height: 35px;background: url(../images/compartilo.png);}
+
+    #inaguracion {top: 139px;left: 143px;}
+	body {background: #8cc63f;}
+    #pajarito {top: 63px;left:300px;}
+    .check {position:absolute;width:12px;height:12px; cursor:pointer; border-radius:3px;background:#fff;border:solid 1px #dedede;border-radius:2px;}
+    #p1_1 {top: 143px;left: 49px;}
+    #p1_2 {top: 157px;left: 49px;}
+    #p1_3 {top: 170px;left: 49px;}
+    #p2_1 {top: 220px;left: 49px;}
+    #p2_2 {top: 234px;left: 49px;}
+    #p2_3 {top: 247px;left: 49px;}
+    #p3_1 {top: 298px;left: 49px;}
+    #p3_2 {top: 312px;left: 49px;}
+    #p3_3 {top: 325px;left: 49px;}
+    #p4_1 {top: 377px;left: 49px;}
+    #p4_2 {top: 390px;left: 49px;}
+    #p4_3 {top: 403px;left: 49px;}
+    #p5_1 {top: 454px;left: 49px;}
+    #p5_2 {top: 468px;left: 49px;}
+    #p5_3 {top: 481px;left: 49px;}
+    #p6_1 {top: 143px;left: 301px;}
+    #p6_2 {top: 157px;left: 301px;}
+    #p6_3 {top: 170px;left: 301px;}
+    #p7_1 {top: 220px;left: 301px;}
+    #p7_2 {top: 234px;left: 301px;}
+    #p7_3 {top: 247px;left: 301px;}
+    #p8_1 {top: 285px;left: 301px;}
+    #p8_2 {top: 298px;left: 301px;}
+    #p8_3 {top: 312px;left: 301px;}
+    #p9_1 {top: 363px;left: 301px;}
+    #p9_2 {top: 377px;left: 301px;}
+    #p9_3 {top: 390px;left: 301px;}
+    #p10_1 {top: 441px;left: 301px;}
+    #p10_2 {top: 454px;left: 301px;}
+    #p10_3 {top: 468px;left: 301px;}
+    
+    </style>
+    <script type="text/javascript">
+    	var resp = new Array();
+    	$(document).ready(function(){
+	    	$('.check').click(function(){
+	    		var id = $(this).attr('id');
+	    		var p = id.substring(1,id.indexOf('_'));
+	    		var o = id.substring(id.indexOf('_')+1);
+	    		if(typeof resp[p] != "undefined")
+	    			$('#p'+p+'_'+ resp[p]).css('background','#fff');
+	    		
+	    		resp[p] = o;
+	    		$('#p'+p+'_'+o).css('background','#000');
+	    	});
+    	});
+    	var user = null;
+    	
+    	function validarRegistro() {
+    		var n = $('#nombre').val();
+    		var c = $('#correo').val();
+    		if(n=="") {
+    			msg("Atención","Debés completar el nombre para avanzar");
+    			return false;
+    		}
+    		if(c=="") {
+    			msg("Atención","Debés completar el correo electrónico para avanzar");
+    			return false;
+    		}
+    		
+    		var r = $.ajax({
+    		   	url:'controller.php',
+    		   	dataType:'json',
+    		   	data: {'op':'usuarioTrivia','nombre':n,'correo':c}
+    	    });
+    		r.done(function(json) { 
+    			if(json.status=="ok") {
+    				user = json.user;
+    				$('#quien').hide();
+    				$('#trivia').show();
+    			} else {
+    				msg("Error", "Se ha producido un error al registrar tus datos. Intentá nuevamente en unos minutos.");
+    			}
+    		});
+    		r.fail(function(jqXHR, textStatus) { 
+    			msg("Error", "Se ha producido un error al registrar tus datos. Intentá nuevamente en unos minutos."); 
+    		});
+    		
+    		return false;
+    	}
+    	
+    	function procesoTrivia() {
+    		
+    		var corr = new Array();
+    		corr[1] = 2;
+    		corr[2] = 2;
+    		corr[3] = 1;
+    		corr[4] = 1;
+    		corr[5] = 2;
+    		corr[6] = 3;
+    		corr[7] = 1;
+    		corr[8] = 2;
+    		corr[9] = 1;
+    		corr[10] = 3;
+    		
+    		var aciertos = 0;
+    		var respuestas = 0;
+    		for(var j=1;j<=10;j++) {
+    			if(typeof resp[j]!="undefined") {
+    				respuestas++;
+	    			if(corr[j]==resp[j])
+	    				aciertos++;
+    			}
+    		}
+ 
+       		if(respuestas!=10) {
+    			msg("Todavía falta...","Por favor completa las diez preguntas primero.");
+    			return false;
+    		}
+    		
+    		//Envio el resultado al server
+    		var r = $.ajax({
+    		   	url:'controller.php',
+    		   	dataType:'json',
+    		   	data: {'op':'puntajeTrivia','user':user,'puntos':aciertos}
+    	    });
+    		
+    		//Muestro el resultado al usuario
+    		$('#puntaje').html(aciertos);
+    		$('#trivia').hide();
+    		$('#resultado').show();
+    		return false;
+    	}
+    	
+    	function compartir() {
+    		$('#trivia').hide();
+    		$('#resultado').hide();
+    		$('#compartir').show();
+    	}
+    	
+    	function compartirSitio() {
+    		var n = $('#nombre2').val();
+    		var c = $('#correo2').val();
+    		if(n=="") {
+    			msg("Atención","Debés completar el nombre de tu amig@ para avanzar");
+    			return false;
+    		}
+    		if(c=="") {
+    			msg("Atención","Debés completar el correo electrónico de tu amig@ para avanzar");
+    			return false;
+    		}
+    		
+    		$("#invitacion_ok").html('Enviando... <img src="../images/loading2.gif"/>');
+    		var r = $.ajax({
+    		   	url:'controller.php',
+    		   	dataType:'json',
+    		   	data: {'op':'invitacionTrivia','nombre':n,'correo':c,'user':user}
+    	    });
+    		r.done(function(json) { 
+    			if(json.status=="ok") {
+    				$('#nombre2').val("");
+    	    		$('#correo2').val("");
+    				$("#invitacion_ok").html("Ya enviamos la invitación a "+n);
+    			} else {
+    				$("#invitacion_ok").html("");
+    				msg("Error", "Se ha producido un error al enviar el correo. Intentá nuevamente en unos minutos.");
+    			}
+    		});
+    		r.fail(function(jqXHR, textStatus) {
+    			$("#invitacion_ok").html("");
+    			msg("Error", "Se ha producido un error al enviar el correo. Intentá nuevamente en unos minutos."); 
+    		});
+    		
+    		return false;
+    	}
+    </script>
+</head>
+<body>
+
+<div id="gallery">
+	<div id="slider">
+		<div class="slide"><img id="f1" src="../images/fondos/fondo14.png" width="960" height="770"/></div>
+	</div>
+
+	<!-- Elementos fijos -->
+	<div id="menu">
+		<a id="m_home" 		href="controller.php"></a>
+		<a id="m_menu" 		href="javascript:void(0)"></a>
+		<a id="m_foto" 		href="controller.php?op=goFoto"></a>
+		<a id="m_wallpaper" href="controller.php?op=goWallpaper"></a>
+		<a id="m_contacto" 	href="controller.php?op=goContacto"></a>
+		<a id="m_autores" 	href="controller.php?op=goAutores"></a>
+		<a id="m_museo" 	href="controller.php?op=goMuseo"></a>
+	</div>
+	<a id="mapa" href="controller.php?op=goMapa"><img src="../images/mapa.png"/></a>
+	<div id="share"><img src="../images/share.png"/>
+		<a id="tweet" href="javascript:void(0)" onclick="twt_click()"><img src="../images/transparent.png"/></a>
+		<a id="fb" href="javascript:void(0)" onclick="fb_click()"><img src="../images/transparent.png"/></a>
+	</div>
+		
+	<div id="quien">
+		<div class="formulario">
+			<div class="titulo">¿Cuánto sabés de Larguirucho?</div>
+			<div class="nota">Participá de esta trivia sobre el personaje y ganá un kit del paseo (ver términos de uso). Para contactarte en caso de que ganes dejanos tu nombre y correo electrónico</div>
+			<div id="registro">
+				<div class="linea">Tu nombre: <input id="nombre"></div>
+				<div class="linea">Tu correo: <input id="correo"></div>
+			</div>
+			<a class="continuar" href="javascript:void(0)" onclick="validarRegistro()"></a>
+	
+			<a class="privacidad" href="../privacy.html">Consulta la política de privacidad y términos de uso del sitio</a>			
+		</div>
+	</div>	
+	
+	<div id="trivia">		
+		<div id="larguirucho"></div>
+	
+		<div id="eventos"><img src="../images/trivia.png" />
+			<div id="p1_1" class="check"></div>
+			<div id="p1_2" class="check"></div>
+			<div id="p1_3" class="check"></div>
+			
+			<div id="p2_1" class="check"></div>
+			<div id="p2_2" class="check"></div>
+			<div id="p2_3" class="check"></div>
+			
+			<div id="p3_1" class="check"></div>
+			<div id="p3_2" class="check"></div>
+			<div id="p3_3" class="check"></div>
+			
+			<div id="p4_1" class="check"></div>
+			<div id="p4_2" class="check"></div>
+			<div id="p4_3" class="check"></div>
+			
+			<div id="p5_1" class="check"></div>
+			<div id="p5_2" class="check"></div>
+			<div id="p5_3" class="check"></div>
+			
+			<div id="p6_1" class="check"></div>
+			<div id="p6_2" class="check"></div>
+			<div id="p6_3" class="check"></div>
+			
+			<div id="p7_1" class="check"></div>
+			<div id="p7_2" class="check"></div>
+			<div id="p7_3" class="check"></div>
+			
+			<div id="p8_1" class="check"></div>
+			<div id="p8_2" class="check"></div>
+			<div id="p8_3" class="check"></div>
+			
+			<div id="p9_1" class="check"></div>
+			<div id="p9_2" class="check"></div>
+			<div id="p9_3" class="check"></div>
+			
+			<div id="p10_1" class="check"></div>
+			<div id="p10_2" class="check"></div>
+			<div id="p10_3" class="check"></div>
+		</div>	
+		
+		<a class="continuar" href="javascript:void(0)" onclick="procesoTrivia()"></a>
+		<a class="compartir" href="javascript:void(0)" onclick="compartir()"></a>
+		
+	</div>
+	
+	<div id="resultado">
+		<div class="formulario">
+			<div class="titulo">¿Cuánto sabés de Larguirucho?</div>
+			<div class="nota">Has obtenido un puntaje de <span id="puntaje"></span> sobre 10.<br><br>
+			¡Gracias por participar! Los 10 primeros participantes con el puntaje más alto recibirán el Kit del Paseo. Los ganadores serán avisados vía mail.<br> 
+			¡No dejes de visitar a Larguirucho en México y Balcarce, Montserrat!<br><br>
+			¡Te esperamos!
+			</div>
+			
+			<a class="compartir" href="javascript:void(0)" onclick="compartir()"></a>
+				
+			<a class="privacidad" href="../privacy.html">Consulta la política de privacidad y términos de uso del sitio</a>			
+		</div>
+	</div>
+	
+	<div id="compartir">
+		<div class="formulario">
+			<div class="titulo">¿Cuénto sabés de Larguirucho?</div>
+			<div class="nota">Para compartirle a un amigo la noticia y la trivia completá su nombre y su correo electrónico. 
+Le enviaremos una invitación para visitar el sitio.</div>			
+			<div id="invitacion">
+				<div class="linea">Nombre: <input id="nombre2"></div>
+				<div class="linea">Correo: <input id="correo2"></div>
+			</div>
+			
+			<a class="continuar" href="javascript:void(0)" onclick="compartirSitio()"></a>
+	
+			<div id="invitacion_ok"></div>
+			
+			<a class="privacidad" href="../privacy.html">Consulta la política de privacidad y términos de uso del sitio</a>			
+		</div>
+	</div>	
+		
+</div>
+
+</body>
+</html>

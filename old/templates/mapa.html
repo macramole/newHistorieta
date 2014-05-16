@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+   	<meta http-equiv="content-language" content="es" />
+ 	
+	<title>Paseo de la historieta</title>
+	<link href="../css/canvas.css" media="screen,print" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../js/jquery-1.7.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="../js/canvas.js"></script>
+	
+	#meta#
+    
+    <style>
+	    #share {top:10px;left:210px;}
+	    #mapita {position:absolute;top:193px;left:190px;width:700px;height:520px;background: url(../images/marconegroyblanco.png);}
+		#mapita div {overflow: scroll;height: 498px;width: 686px;margin-left: 7px;margin-top:11px;}
+		body {background: #8cc63f;}
+	    #pajarito {top: 26px;left:362px;}
+    </style>
+</head>
+<body>
+
+<div id="gallery">
+	<div id="slider">
+		<div class="slide"><img id="f1" src="../images/fondos/fondo11.png" width="960" height="770"/></div>
+	</div>
+
+	<!-- Elementos fijos -->
+	<div id="menu">
+		<a id="m_home" 		href="controller.php"></a>
+		<a id="m_menu" 		href="javascript:void(0)"></a>
+		<a id="m_foto" 		href="controller.php?op=goFoto"></a>
+		<a id="m_wallpaper" href="controller.php?op=goWallpaper"></a>
+		<a id="m_contacto" 	href="controller.php?op=goContacto"></a>
+		<a id="m_autores" 	href="controller.php?op=goAutores"></a>
+		<a id="m_museo" 	href="controller.php?op=goMuseo"></a>
+	</div>
+	<a id="mapa" href="controller.php?op=goMapa"><img src="../images/mapa.png"/></a>
+	<div id="share"><img src="../images/share.png"/>
+		<a id="tweet" href="javascript:void(0)" onclick="twt_click()"><img src="../images/transparent.png"/></a>
+		<a id="fb" href="javascript:void(0)" onclick="fb_click()"><img src="../images/transparent.png"/></a>
+	</div>	
+	<a id="pajarito" href="javascript:void(0)">
+		<img id="globa_pajarito" src="../images/globa_trivia.png"/>
+		<img id="vuelo" src="../images/pajarito-animado.gif"/>
+	</a>
+	
+	<div id="mapita">
+		<div>
+			<img src="../images/mapa.jpg" />
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('#mapita div img').delay(1000).animate({"margin-left":"-108px","margin-top":"-262px"},500);
+	</script>
+</div>
+
+</body>
+</html>

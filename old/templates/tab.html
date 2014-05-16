@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+   	<meta http-equiv="content-language" content="es" />
+ 	
+	<title>Paseo de la historieta</title>
+	<link href="../css/canvas.css" media="screen,print" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../js/jquery-1.7.2.min.js"><\/script>')</script>
+	#meta#
+	<style>
+	#pajarito {position: absolute;top: 445px;left: 101px;cursor: pointer;width:150px;height:180px;}
+	#globa_pajarito {position: absolute; top: 0px;left: 0px;z-index: 2;}
+	#pajarito #vuelo {position: absolute; top: 36px;left: 0px;}
+	#gallery, #slider, .slide {width:810px;overflow:hidden;}
+	</style>
+</head>
+<body>
+
+<div id="gallery">
+	<div id="slider">
+		<div class="slide"><img id="f1" src="../images/tab/tab.jpg" width="810" height="700"/></div>
+	</div>
+
+	<!-- Elementos fijos -->
+	<a id="pajarito" href="#link#" target="_parent">
+		<div id="globa_pajarito"><img src="../images/textopajarito1.png"/></div>
+		<img id="vuelo" src="../images/pajarito-animado.gif"/>
+	</a>	
+</div>
+<script>
+$(document).ready(function(){
+	 $('#pajarito').hover(animarPajarito);
+	 setInterval(animarPajarito,2000);
+});
+
+//Animacion de la globa del pajarito
+var pajarito_state=0;
+function animarPajarito() {
+	var p = $('#globa_pajarito');
+	pajarito_state++;
+	
+	switch(pajarito_state) {
+	case 1:
+		p.html('<img src="../images/textopajarito1.png"/>').show();
+		break;
+	case 2:
+		p.html('<img src="../images/hace_click.png"/>');
+		break;
+	case 3:
+		p.hide();
+		pajarito_state = 0;
+		break;
+	}	
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+   	<meta http-equiv="content-language" content="es" />
+ 	
+	<title>Paseo de la historieta</title>
+	<link href="../css/canvas.css" media="screen,print" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../js/jquery-1.7.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="../js/canvas.js"></script>
+	
+	#meta#
+</head>
+<body>
+
+<div id="gallery">
+	<div id="slider">
+		<div class="slide"><img id="f1" src="../images/fondos/fondo1.png" width="960" height="770"/></div>
+		<div class="slide"><img id="f2" src="../images/fondos/fondo1.png" width="960" height="770"/></div>
+		<div class="slide"><img id="f3" src="../images/fondos/fondo1.png" width="960" height="770"/></div>
+		<div class="slide"><img id="f4" src="../images/fondos/fondo1.png" width="960" height="770"/></div>
+		<div class="slide"><img id="f5" src="../images/fondos/fondo1.png" width="960" height="770"/></div>
+		<div class="slide"><img id="f6" src="../images/fondos/fondo1.png" width="960" height="770"/></div>
+		<div class="slide"><img id="f7" src="../images/fondos/fondo1.png" width="960" height="770"/></div>
+		<div class="slide"><img id="f8" src="../images/fondos/fondo1.png" width="960" height="770"/></div>
+		<div class="slide"><img id="f9" src="../images/fondos/fondo1.png" width="960" height="770"/></div>
+		<div class="slide"><img id="f10" src="../images/fondos/fondo1.png" width="960" height="770"/></div>
+	</div>
+
+	<!-- Elementos fijos -->
+	<div id="menu">
+		<a id="m_home" 		href="controller.php"></a>
+		<a id="m_menu" 		href="javascript:void(0)"></a>
+		<a id="m_foto" 		href="controller.php?op=goFoto"></a>
+		<a id="m_wallpaper" href="controller.php?op=goWallpaper"></a>
+		<a id="m_contacto" 	href="controller.php?op=goContacto"></a>
+		<a id="m_autores" 	href="controller.php?op=goAutores"></a>
+		<a id="m_museo" 	href="controller.php?op=goMuseo"></a>
+	</div>
+	<a id="mapa" href="controller.php?op=goMapa"><img src="../images/mapa.png"/></a>
+	<div id="share"><img src="../images/share.png"/>
+		<a id="tweet" href="javascript:void(0)" onclick="twt_click()"><img src="../images/transparent.png"/></a>
+		<a id="fb" href="javascript:void(0)" onclick="fb_click()"><img src="../images/transparent.png"/></a>
+	</div>	
+
+	<a id="pajarito" href="javascript:void(0)">
+		<img id="globa_pajarito" src="../images/globa_trivia.png"/>
+		<img id="vuelo" src="../images/pajarito-animado.gif"/>
+	</a>
+
+	<!-- Elementos de esta pagina -->	
+	
+	<div id="texto_home"><img src="../images/texto.png"/></div>
+	<a id="paseo" href="controller.php"><img src="../images/logo262.png"/></a>
+	<a id="inaguracion" href="controller.php?op=goInaguracion"><img src="../images/proximamente.png"/></a>	
+		
+	<div id="globa_personaje"><img src="../images/globa_mafalda.png"/></div>
+	<div id="personaje"><img src="../images/mafalda.png"/></div>
+	
+	<div id="ant"><img src="../images/anterior.png"/><br/>anterior</div>
+	<div id="sig"><img src="../images/siguiente.png"/><br/>siguiente</div>
+	
+</div>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+   	<meta http-equiv="content-language" content="es" />
+ 	
+	<title>Paseo de la historieta</title>
+	<link href="../css/canvas.css" media="screen,print" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../js/jquery-1.7.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="../js/canvas.js"></script>
+	
+	#meta#
+    
+    <style>
+    #share {top:10px;left:210px;}
+    #dialogo {position: absolute;top: 193px;left: 175px;font:14pt KiComicRegular;width:700px;height:515px;text-align:left;background: url(../images/marconegroyblanco.png);}
+	#dialogo #cont {padding:20px;}
+	#dialogo #cont div {margin-top:10px;}
+	input, select, option, textarea {font:12pt KiComicRegular;}
+	#casoM, #casoF, #nombreAmigo, #userAmigo {display:none;}
+	#acciones a {float:left;}
+	#acciones {padding-left:300px;}
+	body {background: #8cc63f;} 
+	.paloma {width:80px;}
+	#msg {width: 650px;height: 190px;}
+	#tu_nombre, #correo {width: 350px;}
+    #pajarito {top: 25px;left: 364px;}
+    </style>
+</head>
+<body>
+
+<div id="gallery">
+	<div id="slider">
+		<div class="slide"><img id="f1" src="../images/fondos/fondo11.png" width="960" height="770"/></div>
+	</div>
+
+	<!-- Elementos fijos -->
+	<div id="menu">
+		<a id="m_home" 		href="controller.php"></a>
+		<a id="m_menu" 		href="javascript:void(0)"></a>
+		<a id="m_foto" 		href="controller.php?op=goFoto"></a>
+		<a id="m_wallpaper" href="controller.php?op=goWallpaper"></a>
+		<a id="m_contacto" 	href="controller.php?op=goContacto"></a>
+		<a id="m_autores" 	href="controller.php?op=goAutores"></a>
+		<a id="m_museo" 	href="controller.php?op=goMuseo"></a>
+	</div>
+	<a id="mapa" href="controller.php?op=goMapa"><img src="../images/mapa.png"/></a>
+	<div id="share"><img src="../images/share.png"/>
+		<a id="tweet" href="javascript:void(0)" onclick="twt_click()"><img src="../images/transparent.png"/></a>
+		<a id="fb" href="javascript:void(0)" onclick="fb_click()"><img src="../images/transparent.png"/></a>
+	</div>	
+	<a id="pajarito" href="javascript:void(0)">
+		<img id="globa_pajarito" src="../images/globa_trivia.png"/>
+		<img id="vuelo" src="../images/pajarito-animado.gif"/>
+	</a>
+	
+	<div id="dialogo"><div id="cont">
+		<div>¡Hola!<br>Escribí tu mensaje para contactarte con nosotros. <br>¡Gracias!</div>
+		
+		<div><label>Tu nombre:</label>			<input type="text" id="tu_nombre"></div>
+		<div><label>Correo:</label>				<input type="text" id="correo"></div>
+		<div><label>Mensaje:</label>			<textarea id="msg"></textarea></div>
+		
+		<div id="acciones">
+			<a id="cancela" href="controller.php?op=goHome"><img src="../images/botoncancelar.png"/></a>
+			<a id="sigue" href="javascript:void(0)" onclick="siguiente()"><img src="../images/botonsiguiente.png"/></a>
+		</div> 
+		
+	</div></div>
+</div>
+<script type="text/javascript">
+
+function siguiente() {
+	var mensaje = $('#msg').val();
+	if( mensaje=="" ) {
+		msg("Completá más datos","Para avanzar, por favor escribí algún mensaje.");
+		return false;
+	}
+
+	var nombre = $('#tu_nombre').val();
+	if( nombre=="" ) {
+		msg("Completá más datos","Para avanzar, por favor escribí tu nombre.");
+		return false;
+	}
+	
+	var mail = $('#correo').val();
+	if( mail=="" ) {
+		msg("Completá más datos","Para avanzar, por favor escribí tu correo electrónico.");
+		return false;
+	}
+	
+	msg("Aguardá un momento por favor",'<div class="espera">Realizando el envío...<br/><img src="../images/loading2.gif"/></div>',false);
+	
+	var r = $.ajax({
+	   	url:'controller.php',
+	   	dataType:'json',
+	   	data: {'op':'enviarContacto','mensaje':mensaje, 'nombre':nombre, 'mail':mail}
+    });
+	
+	r.done(function(json) { 
+		if(json.status=="ok") {
+			msg("",'Tu mensaje se envió con éxito!',true, "irAHome");
+		} else {
+			msg("Error al enviar el mensaje", "Se ha producido un error al enviar tu mensaje. Reintentá nuevamente en unos minutos.");
+		}
+	});
+	
+	r.fail(function(jqXHR, textStatus) { 
+		msg("Error al enviar mensaje", "Se ha producido un error al enviar tu mensaje. Reintentá nuevamente en unos minutos.") 
+	});	
+	return false;
+}
+
+function irAHome() {
+	document.location='controller.php';	
+}
+
+</script>
+</body>
+</html>

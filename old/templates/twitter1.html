@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+   	<meta http-equiv="content-language" content="es" />
+ 	
+	<title>Paseo de la historieta</title>
+	<link href="../css/canvas.css" media="screen,print" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../js/jquery-1.7.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="../js/canvas.js"></script>
+	
+	#meta#
+    
+    <style>
+    #share {top:10px;left:182px;}
+    #dialogo, #dialogo2 
+    {position: absolute;top: 193px;left: 254px;font:14pt KiComicRegular;width:700px;height:520px;text-align:left;background: url(../images/marconegroyblanco.png);}
+	#dialogo #cont, #dialogo2 #cont {padding:20px;}
+	#dialogo #cont div, #dialogo2 #cont div {margin-top:10px;}
+	#postal {width: 460px;margin-left: 96px;}
+	input, select, option {font:12pt KiComicRegular;}
+	#casoM, #casoF, #nombreAmigo, #userAmigo {display:none;}
+	#acciones a {float:left;}
+	#acciones {padding-left:300px;}
+    #pajarito {top: 51px;}
+    
+    #cancela {height:30px;width:102px;background:url(../images/can_sig.png);background-position:0px -13px}
+	#sigue 	 {height:40px;width:102px;background:url(../images/can_sig.png);background-position:0px -43px}
+
+	#inicio {position:absolute;height:30px;width:90px;background:url(../images/ir_a_inicio.png);background-position:0px 0px}
+	#otra 	{position:absolute;height:30px;width:90px;background:url(../images/otra_postal.png);background-position:0px 0px;left:160px;}
+    
+    </style>
+</head>
+<body>
+
+<div id="gallery">
+	<div id="slider">
+		<div class="slide"><img id="f1" src="../images/fondos/fondo13.png" width="960" height="770"/></div>
+	</div>
+
+	<!-- Elementos fijos -->
+	<div id="ba"><img src="../images/ba.png"/></div>
+	<div id="menu">
+		<a id="m_menu" 		href="#1"></a>
+		<a id="m_foto" 		href="controller.php?op=goFoto"></a>
+		<a id="m_wallpaper" href="controller.php?op=goWallpaper"></a>
+		<a id="m_contacto" 	href="controller.php?op=goContacto"></a>
+		<a id="m_autores" 	href="controller.php?op=goAutores"></a>
+		<a id="m_museo" 	href="controller.php?op=goMuseo"></a>
+		<a id="m_mapa" 		href="controller.php?op=goMapa"></a>
+	</div>
+	<a id="mapa" href="controller.php?op=goMapa"><img src="../images/mapa.png"/></a>
+	<div id="share"><img src="../images/share.png"/>
+		<a id="tweet" href="javascript:void(0)" onclick="twt_click()"><img src="../images/transparent.png"/></a>
+		<a id="fb" href="javascript:void(0)" onclick="fb_click()"><img src="../images/transparent.png"/></a>
+	</div>	
+		
+	<a id="pajarito" href="controller.php?op=goAppEnvio">
+		<div id="globa_pajarito"><img src="../images/textopajarito1.png" /></div>
+		<img id="vuelo" src="../images/pajarito-animado.gif"/>
+	</a>
+	
+	<div id="dialogo"><div id="cont">
+		<div>Enviaremos una postal personalizada del día del amigo. Para ello necesitaremos algunos datos básicos.</div>
+		<div>Género: <input type="radio" id="generoM" name="genero">masculino <input type="radio" id="generoF" name="genero">femenino</div>
+		<div id="nombreAmigo"><label>Nombre de tu amig@:</label><input type="text" id="nombre"></div>
+		<div id="userAmigo"><label>Usuario de twitter: @</label><input type="text" id="twitter"></div>
+		<div id="casoM">¿Cómo es tu amigo?<br/> 
+			<span>
+				<input type="radio" id="M1" name="caso">Futbolero, irónico, burlón<br/>
+				<input type="radio" id="M2" name="caso">Generoso, valiente, solidario y justiciero<br/>
+				<input type="radio" id="M3" name="caso">Canchero, chamuyero y amante de la noche<br/>
+				<input type="radio" id="M4" name="caso">Inocente, bonachón y con espíritu de niño<br/>
+				<input type="radio" id="M5" name="caso">Condescendiente y políticamente correcto
+			</span>
+		</div>
+		<div id="casoF">¿Cómo es tu amiga?<br/> 
+			<span>
+				<input type="radio" id="F1" name="caso">Glotona, la que todos los días comienza la dieta<br/>
+				<input type="radio" id="F2" name="caso">Rebuscada, celosa e inteligente<br/>
+				<input type="radio" id="F3" name="caso">Glamorosa, sensual y femenina<br/>
+				<input type="radio" id="F4" name="caso">Divertida, gamba y trasnochera<br/>
+				<input type="radio" id="F5" name="caso">De pocas pulgas, temperamental y justiciera
+			</span>
+		</div>
+
+		<div id="acciones">
+			<a id="cancela" href="controller.php?op=goHome"></a>
+			<a id="sigue" href="javascript:void(0)" onclick="siguiente()"></a>
+		</div> 
+		
+	</div></div>
+	
+	
+	<div id="dialogo2" class="ocultar"><div id="cont">
+		<div id="msg">¿Que te parece esta postal para tu amigo?</div>
+		<div>
+			<img id="postal" src="../images/postales/#postal#"/>
+		</div>
+
+		<div id="acciones">
+			<a id="cancela" href="controller.php?op=goHome"></a>
+			<a id="sigue" href="javascript:void(0)" onclick="tweet()"></a>
+		</div> 
+		
+	</div></div>
+	
+</div>
+<script type="text/javascript">
+$('#generoM').change(function(){
+	$('#nombreAmigo label').html("Nombre de tu amigo:");
+	$('#nombreAmigo').show();
+	$('#userAmigo').show();
+	$('#casoM').show();
+	$('#casoF').hide();
+});
+
+$('#generoF').change(function(){
+	$('#nombreAmigo label').html("Nombre de tu amiga:");
+	$('#nombreAmigo').show();
+	$('#userAmigo').show();
+	$('#casoF').show();
+	$('#casoM').hide();
+});
+
+function siguiente() {
+	var genero = "M";
+	if( $('#generoM:checked').length==0 && $('#generoF:checked').length==0 ) {
+		msg("Completa mas datos","Para avanzar, por favor indica el género de tu amig@.");
+		return false;
+	}
+	if( $('#generoF:checked').length==1 )
+		genero="F";
+	
+	var amigo = $('#nombre').val();
+	if( amigo=="" ) {
+		msg("Completa mas datos","Para avanzar, por favor indica el nombre de tu amig@.");
+		return false;
+	}
+	var twitter = $('#twitter').val();
+	if( twitter=="" ) {
+		msg("Completa mas datos","Para avanzar, por favor indica el usuario de twitter de tu amig@.");
+		return false;
+	}
+	if( $('input[name=caso]:checked').length==0 ) {
+		msg("Completa mas datos","Para avanzar, por favor indica como es tu amig@.");
+		return false;
+	}
+	var postal = $('input[name=caso]:checked').attr('id'); 
+	
+	var r = $.ajax({
+	   	url:'controller.php',
+	   	dataType:'json',
+	   	data: {'op':'preparaTwitter', 'a':amigo, 't':twitter, 'p':postal}
+    });
+	
+	r.done(function(json) { 
+		if(json.status=="ok") {    		
+    		if( json.genero=="M")
+    			$('#msg').html("¿Qué te parece esta postal para tu amigo "+amigo+"?");
+    		else
+    			$('#msg').html("¿Qué te parece esta postal para tu amiga "+amigo+"?");
+
+    		$('#postal').attr('src',"../images/postales/" + json.postal);
+    		$('#dialogo').hide();
+    		$('#dialogo2').show();
+
+		} else {
+			msg("Error", json.error);
+			console.error("Twitter: " + json.error);
+		}
+	});
+	r.fail(function(jqXHR, textStatus) { 
+		msg("Error", "Se ha producido un error al enviar el Tweet. Intentá nuevamente en unos minutos.") 
+	});
+		
+	return false;
+}
+
+
+function tweet() {
+	var r = $.ajax({
+	   	url:'controller.php',
+	   	dataType:'json',
+	   	data: {'op':'enviarTweet'}
+    });
+	r.done(function(json) { 
+		if(json.status=="ok") {
+			var u="@"+json.cuenta+" #PaseoHistorietaBA "+json.hash+" Feliz día "+json.amigo+"!";
+    		window.open('http://twitter.com/home?status='+encodeURIComponent(u), "sharer","toolbar=0,status=0,width=626,height=236");
+    		
+    		msg("Envío completado", "Envía otra postal a más amigos <br/> " + 
+					"<div id='acciones'><a id='inicio' href='controller.php'></a> " + 
+					"<a id='otra' href='javascript:void(0)' onclick='otroTweet()'></a></div>",false);
+		}
+	});
+	r.fail(function(jqXHR, textStatus) { 
+		msg("Error", "Se ha producido un error al enviar el tweet. Intente nuevamente en unos minutos.") 
+	});
+	return false;
+}
+
+//Resetar y volver a la pantalla inicial
+function otroTweet() {
+	$('#popup').remove();
+	$('#curtain').remove();
+	$('#dialogo2').hide();
+	$('#dialogo').show();
+	$('#nombre').val('');
+	$('#twitter').val('');
+	return false;
+}
+</script>
+</body>
+</html>

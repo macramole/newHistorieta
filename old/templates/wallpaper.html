@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+   	<meta http-equiv="content-language" content="es" />
+ 	
+	<title>Paseo de la historieta</title>
+	<link href="../css/canvas.css" media="screen,print" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../js/jquery-1.7.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="../js/canvas.js"></script>
+	
+	#meta#	
+	<script type="text/javascript" src="../galleria/galleria-1.2.7.min.js"></script>
+	
+    
+    <style>
+    #share {top:10px;left:210px;}
+    #galleria {position: absolute;top: 220px;left: 183px;width: 670px;height: 498px;}
+    #pajarito {top: 46px;}
+    </style>
+</head>
+<body>
+
+<div id="gallery">
+	<div id="slider">
+		<div class="slide"><img id="f1" src="../images/fondos/fondo10.png" width="960" height="770"/></div>
+	</div>
+
+	<!-- Elementos fijos -->
+	<div id="menu">
+		<a id="m_home" 		href="controller.php"></a>
+		<a id="m_menu" 		href="javascript:void(0)"></a>
+		<a id="m_foto" 		href="controller.php?op=goFoto"></a>
+		<a id="m_wallpaper" href="controller.php?op=goWallpaper"></a>
+		<a id="m_contacto" 	href="controller.php?op=goContacto"></a>
+		<a id="m_autores" 	href="controller.php?op=goAutores"></a>
+		<a id="m_museo" 	href="controller.php?op=goMuseo"></a>
+	</div>
+	<a id="mapa" href="controller.php?op=goMapa"><img src="../images/mapa.png"/></a>
+	<div id="share"><img src="../images/share.png"/>
+		<a id="tweet" href="javascript:void(0)" onclick="twt_click()"><img src="../images/transparent.png"/></a>
+		<a id="fb" href="javascript:void(0)" onclick="fb_click()"><img src="../images/transparent.png"/></a>
+	</div>	
+	<a id="pajarito" href="javascript:void(0)">
+		<img id="globa_pajarito" src="../images/globa_trivia.png"/>
+		<img id="vuelo" src="../images/pajarito-animado.gif"/>
+	</a>
+	
+	<div id="galleria">
+	</div>
+	<script type="text/javascript">
+		var data = [
+	            {
+	                image: '../images/wallpaper/cachorra_wp.jpg',
+	                title: 'Cachorra',
+	                description: 'Dante Quinterno',
+	                link: '../images/wallpaper/cachorra_wp.jpg'
+	            },
+	            {
+	                image: '../images/wallpaper/clemente_wp.jpg',
+	                title: 'Clemente',
+	                description: 'Caloi',
+	                link: '../images/wallpaper/clemente_wp.jpg'
+	            },
+	            {
+	                image: '../images/wallpaper/divito_wp.jpg',
+	                title: 'Chicas Divito',
+	                description: 'Guillermo Divito',
+	                link: '../images/wallpaper/divito_wp.jpg'
+	            },
+	            {
+	                image: '../images/wallpaper/donfulgencio_wp.jpg',
+	                title: 'Don Fulgencio',
+	                description: 'Lino Palacio',
+	                link: '../images/wallpaper/donfulgencio_wp.jpg'
+	            },
+	            {
+	                image: '../images/wallpaper/gaturro_wp.jpg',
+	                title: 'Gaturro',
+	                description: 'Nik',
+	                link: '../images/wallpaper/gaturro_wp.jpg'
+	            },
+	            {
+	                image: '../images/wallpaper/gaturroynovia_wp.jpg',
+	                title: 'Gaturro y Agatha',
+	                description: 'Nik',
+	                link: '../images/wallpaper/gaturroynovia_wp.jpg'
+	            },
+	            {
+	                image: '../images/wallpaper/isidoroycachorra_wp.jpg',
+	                title: 'Isidoro Cañones',
+	                description: 'Dante Quinterno',
+	                link: '../images/wallpaper/isidoroycachorra_wp.jpg'
+	            },
+	            {
+	                image: '../images/wallpaper/locochavez_wp.jpg',
+	                title: 'Loco Chavez',
+	                description: 'Horacio Altuna y Carlos Trillo',
+	                link: '../images/wallpaper/locochavez_wp.jpg'
+	            },
+	            {
+	                image: '../images/wallpaper/matias_wp.jpg',
+	                title: 'Matías',
+	                description: 'Sendra',
+	                link: '../images/wallpaper/matias_wp.jpg'
+	            },
+	            {
+	                image: '../images/wallpaper/patoruzu_wp.jpg',
+	                title: 'Patoruzú',
+	                description: 'Dante Quinterno',
+	                link: '../images/wallpaper/patoruzu_wp.jpg'
+	            }
+	        ];
+		var conf = {
+	    	imageCrop: true,
+	    	transition: 'fade',
+	    	dataSource: data
+		};
+		Galleria.loadTheme('../galleria/themes/classic/galleria.classic.min.js');
+    	Galleria.run('#galleria',conf);
+	</script>
+</div>
+
+</body>
+</html>

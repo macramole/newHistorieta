@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta property="og:title" content="#titulo#"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:image" content="#image#"/>
+    <meta property="og:url" content="#url#"/>
+    <meta property="og:site_name" content="Paseo de la historieta"/>
+    <meta property="fb:app_id" content="368774669843511"/>	
+	<title>#titulo#</title>
+	<style>
+@font-face {
+    font-family: 'KiComicRegular';
+    src: url('fonts/kicomic_-webfont.eot');
+    src: url('fonts/kicomic_-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/kicomic_-webfont.woff') format('woff'),
+         url('fonts/kicomic_-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+body {font:18pt KiComicRegular,Arial,Helvetica;background: #56C3CE;text-align:center;margin:0px;}
+#ba {position:absolute; top: 0px;left: 37px;width: 128px;height: 153px;cursor:pointer;}
+#postal {position:absolute;top: 180px;left: 170px; }
+#gallery {margin:auto;padding:0px;position:relative;width:1025px;overflow:hidden;}
+#slider {height: 770px;width:1025px;overflow:hidden;}
+.slide {float:left;}
+#mensaje {position:absolute;top: 125px;left: 170px;text-align:left;}
+#links {position:absolute;top: 640px;left: 30px;}
+#comparte {position: absolute;top: 4px;left: 778px;height: 47px;width: 160px;}
+body {background: #8cc63f;}
+	</style>
+</head>
+<body>
+
+<div id="gallery" onclick="document.location='#canvas#'">
+	<div id="slider">
+		<div class="slide"><img src="images/fondos/fondo14.png" width="960" height="770"/></div>
+	</div>
+
+	<!-- Elementos fijos -->
+	<div id="ba"></div>
+	<div id="mensaje">Feliz día del amigo #amigo_nombre#! <br/>Te saluda #nombre# #apellido#.</div>	
+	<div id="postal"><img src="images/postales/#postal#" width="600" /></div>
+	
+	<div id="links"><img src="images/piepagina.png"/>
+		<a id="comparte" href="#app#"></a>
+	</div>
+</div>
+
+</body>
+</html>

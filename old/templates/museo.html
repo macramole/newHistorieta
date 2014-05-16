@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+   	<meta http-equiv="content-language" content="es" />
+ 	
+	<title>Paseo de la historieta</title>
+	<link href="../css/canvas.css" media="screen,print" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../js/jquery-1.7.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="../js/canvas.js"></script>
+	
+	#meta#
+    
+    <style>
+    #share {top:10px;left:210px;}
+    #dialogo {position: absolute;top: 193px;left: 175px;font:14pt KiComicRegular;width:700px;height:500px;text-align:left;background: url(../images/marconegroyblanco.png);}
+	#dialogo #cont {padding:20px;}
+	#dialogo #cont div {margin-top:10px;}
+	input, select, option, textarea {font:12pt KiComicRegular;}
+	#casoM, #casoF, #nombreAmigo, #userAmigo {display:none;}
+	#acciones a {float:left;}
+	#acciones {padding-left:300px;}
+	body {background: #8cc63f;} 
+	.paloma {width:80px;}
+	#msg {width: 650px;height: 190px;}
+	#tu_nombre, #correo {width: 350px;}
+    #pajarito {top: 2px;left: 475px;}
+    #logo {position: absolute;top: 0px;left: 766px;}
+    #logo_museo {position: absolute;top: 293px;left: 103px;}
+    #dialogo_museo {position: absolute;top: 171px;left: 450px;}
+	#dire {color:#fff; position: absolute; top:623px; left: 161px;}
+    </style>
+</head>
+<body>
+
+<div id="gallery">
+	<div id="slider">
+		<div class="slide"><img id="f1" src="../images/fondos/fondo16.png" width="960" height="770"/></div>
+	</div>
+
+	<!-- Elementos fijos -->
+	<div id="menu">
+		<a id="m_home" 		href="controller.php"></a>
+		<a id="m_menu" 		href="javascript:void(0)"></a>
+		<a id="m_foto" 		href="controller.php?op=goFoto"></a>
+		<a id="m_wallpaper" href="controller.php?op=goWallpaper"></a>
+		<a id="m_contacto" 	href="controller.php?op=goContacto"></a>
+		<a id="m_autores" 	href="controller.php?op=goAutores"></a>
+		<a id="m_museo" 	href="controller.php?op=goMuseo"></a>
+	</div>
+	<a id="mapa" href="controller.php?op=goMapa"><img src="../images/mapa.png"/></a>
+	<div id="share"><img src="../images/share.png"/>
+		<a id="tweet" href="javascript:void(0)" onclick="twt_click()"><img src="../images/transparent.png"/></a>
+		<a id="fb" href="javascript:void(0)" onclick="fb_click()"><img src="../images/transparent.png"/></a>
+	</div>	
+	<a id="pajarito" href="javascript:void(0)">
+		<img id="globa_pajarito" src="../images/globa_trivia.png"/>
+		<img id="vuelo" src="../images/pajarito-animado.gif"/>
+	</a>
+
+	<a href="http://www.museos.buenosaires.gob.ar/muhu">
+	<!-- Para KIOSK <a href="javascript:void(0)"> -->
+	<img id="logo_museo" src="../images/logo_museo.png"/></a>
+	<img id="dialogo_museo" src="../images/dialogo_museo.png"/>
+	<div id="dire">
+		Dirección: Av. de los Italianos 851, Puerto Madero.<br/>
+		Horario: Lunes a viernes de 11 a 18 horas. Sábados domingos y feriados de 10 a 19 horas.<br/>
+		Visitas guiadas: sábados y domingos a las 15 y 18 horas.
+	</div>
+</div>
+<script type="text/javascript">
+
+function siguiente() {
+	var mensaje = $('#msg').val();
+	if( mensaje=="" ) {
+		msg("Completa mas datos","Para avanzar, por favor escribe algún mensaje.");
+		return false;
+	}
+
+	var nombre = $('#tu_nombre').val();
+	var mail = $('#correo').val();
+
+	msg("Aguarda un momento por favor",'<div class="espera">Realizando el envío...<br/><img src="../images/loading2.gif"/></div>',false);
+	
+	var r = $.ajax({
+	   	url:'controller.php',
+	   	dataType:'json',
+	   	data: {'op':'enviarContacto','mensaje':mensaje, 'nombre':nombre, 'mail':mail}
+    });
+	
+	r.done(function(json) { 
+		if(json.status=="ok") {
+			msg("",'Tu mensaje se envío con exito!<img class="paloma" src="../images/paloma-01.png">',true, function(){
+				document.location='controller.php';
+			});
+		} else {
+			msg("Error al enviar el mensaje", "Se ha producido un error al intentar enviar tu mensaje. Reintenta nuevamente en unos minutos.");
+		}
+	});
+	
+	r.fail(function(jqXHR, textStatus) { 
+		msg("Error al enviar mensaje", "Se ha producido un error al intentar enviar tu mensaje. Reintenta nuevamente en unos minutos.") 
+	});	
+	return false;
+}
+
+
+
+</script>
+</body>
+</html>

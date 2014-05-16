@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+   	<meta http-equiv="content-language" content="es" />
+ 	
+	<title>Paseo de la historieta</title>
+	<link href="../css/canvas.css" media="screen,print" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../js/jquery-1.7.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="../js/canvas.js"></script>
+	
+	#meta#
+    
+    <style>
+    #share {top:10px;left:182px;}
+    #postal {position: absolute;top: 193px;left: 254px;	width:500px;height:365px; background: url(../images/dialogo_compartir.png);}
+	#postal #xtwitter {position: absolute;width: 114px;height: 111px;top: 134px;left: 46px;}
+	#postal #xfacebook {position: absolute;width:114px;height:111px;top: 134px;left: 182px;}
+	#postal #xmail {position: absolute;width:142px;height:111px;top: 134px;left: 316px;}
+	
+    #pajarito {top: 52px;left:450px;}
+ 
+    #priv {position: absolute;top: 584px;left: 147px;width: 695px;height: 36px;text-align: center;color:#fff;}
+    
+	</style>
+</head>
+<body>
+
+<div id="gallery">
+	<div id="slider">
+		<div class="slide"><img id="f1" src="../images/fondos/fondo15.png" width="960" height="770"/></div>
+	</div>
+
+	<!-- Elementos fijos -->
+	<div id="ba"><img src="../images/ba.png"/></div>
+	<div id="menu">
+		<a id="m_menu" 		href="#1"></a>
+		<a id="m_foto" 		href="controller.php?op=goFoto"></a>
+		<a id="m_wallpaper" href="controller.php?op=goWallpaper"></a>
+		<a id="m_contacto" 	href="controller.php?op=goContacto"></a>
+		<a id="m_autores" 	href="controller.php?op=goAutores"></a>
+		<a id="m_museo" 	href="controller.php?op=goMuseo"></a>
+		<a id="m_mapa" 		href="controller.php?op=goMapa"></a>
+	</div>
+	<a id="mapa" href="controller.php?op=goMapa"><img src="../images/mapa.png"/></a>
+	<div id="share"><img src="../images/share.png"/>
+		<a id="tweet" href="javascript:void(0)" onclick="twt_click()"><img src="../images/transparent.png"/></a>
+		<a id="fb" href="javascript:void(0)" onclick="fb_click()"><img src="../images/transparent.png"/></a>
+	</div>	
+		
+	<a id="pajarito" href="controller.php?op=goAppEnvio">
+		<div id="globa_pajarito"><img src="../images/textopajarito1.png" /></div>
+		<img id="vuelo" src="../images/pajarito-animado.gif"/>
+	</a>
+			
+	<div id="postal">
+		<a id="xtwitter" href="controller.php?op=goTwitter"></a>
+		<a id="xfacebook" href="controller.php?op=goFacebook"></a>
+		<a id="xmail" href="controller.php?op=goMail"></a>
+	</div>
+	
+	<div id="priv">
+	El uso del sitio para enviar postales implica la aceptación de la política de privacidad. <a href="../privacy.html">Puede leerla aqui.</a>
+	</div>
+</div>
+
+</body>
+</html>

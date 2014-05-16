@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+   	<meta http-equiv="content-language" content="es" />
+ 	
+	<title>Paseo de la historieta</title>
+	<link href="../css/canvas.css" media="screen,print" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../js/jquery-1.7.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="../js/canvas.js"></script>
+	#meta#
+	<script type="text/javascript" src="../js/jquery.tinyscrollbar.min.js"></script>	    
+    <style>
+    #share {left: 478px;top: 651px;}
+    #sig {left:885px;}
+    body {background: #ec008c;}
+    #bio {position:absolute; top:214px; left:500px; width:350px; height:410px; background: url(../images/bioautores.png)}
+    #bio_personaje {position:absolute; top:297px; left:194px; }
+    #bioscroll {position: absolute;overflow:hidden;top: 66px;left: 52px;width: 275px;height: 331px;text-align:left;}
+    #globa {position:absolute; top:150px; left:167px;width:310px; height:95px; background: url(../images/globa_autores.png);overflow:hidden;}
+    
+	#bioscroll .viewport { width: 255px; height: 331px; overflow: hidden; position: relative; }
+	#bioscroll .overview { list-style: none; position: absolute; left: 0; top: 0; }
+	#bioscroll .thumb .end,
+	#bioscroll .thumb { background-color: #003D5D; }
+	#bioscroll .scrollbar { position: relative; float: right; width: 15px; }
+	#bioscroll .track { background-color: #D8EEFD; height: 100%; width:13px; position: relative; padding: 0 1px; }
+	#bioscroll .thumb { height: 20px; width: 13px; cursor: pointer; overflow: hidden; position: absolute; top: 0; }
+	#bioscroll .thumb .end { overflow: hidden; height: 5px; width: 13px; }
+	#bioscroll .disable{ display: none; }
+	
+    </style>
+</head>
+<body>
+
+<div id="gallery">
+	<div id="slider">
+		<div class="slide"><img id="f1" src="../images/fondos/fondo12.png" width="960" height="770"/></div>
+	</div>
+
+	<!-- Elementos fijos -->
+	<div id="menu">
+		<a id="m_home" 		href="controller.php"></a>
+		<a id="m_menu" 		href="javascript:void(0)"></a>
+		<a id="m_foto" 		href="controller.php?op=goFoto"></a>
+		<a id="m_wallpaper" href="controller.php?op=goWallpaper"></a>
+		<a id="m_contacto" 	href="controller.php?op=goContacto"></a>
+		<a id="m_autores" 	href="controller.php?op=goAutores"></a>
+		<a id="m_museo" 	href="controller.php?op=goMuseo"></a>
+		
+	</div>
+	<a id="mapa" href="controller.php?op=goMapa"><img src="../images/mapa.png"/></a>
+	<div id="share"><img src="../images/share.png"/>
+		<a id="tweet" href="javascript:void(0)" onclick="twt_click()"><img src="../images/transparent.png"/></a>
+		<a id="fb" href="javascript:void(0)" onclick="fb_click()"><img src="../images/transparent.png"/></a>
+	</div>	
+	<a id="pajarito" href="javascript:void(0)">
+		<img id="globa_pajarito" src="../images/globa_trivia.png"/>
+		<img id="vuelo" src="../images/pajarito-animado.gif"/>
+	</a>
+
+	<div id="globa"></div>
+	<div id="bio">
+		<div id="bioscroll">
+			<div class="scrollbar">
+				<div class="track">
+					<div class="thumb">
+						<div class="end"></div>
+					</div>
+				</div>
+			</div>
+			<div class="viewport">
+				<div class="overview"></div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="ant"><img src="../images/anterior.png"/><br/>anterior</div>
+	<div id="sig"><img src="../images/siguiente.png"/><br/>siguiente</div>
+	<div id="bio_personaje"></div>
+
+</div>
+<script type="text/javascript">
+var autores = [
+           	{'bio':'Nació en Mendoza en 1932. Su nombre completo es Joaquín Salvador Lavado. Se dedicó al dibujo desde pequeño, guiado por su tío Joaquín Tejón, dibujante profesional. Estudió en la Escuela de Bellas Artes de la Universidad de Cuyo y trabajó como dibujante publicitario varios años.' + 
+        	'En 1954 el semanario Esto Es le publicó su primera página de humor gráfico. A partir de ese año fue apareciendo en diversos medios hasta que en 1962 Primera Plana aceptó publicar a Mafalda como tira fija. Muy pronto, ese mundo infantil compuesto por arquetipos adultos que reflejaba a la clase media argentina se hizo tan famoso que en 1965 empezó a publicarse diariamente en el periódico El Mundo, para deleite de sus lectores.' +
+        	'En 1968 Mafalda llegó a Europa, donde su éxito fue casi tan rotundo como en Buenos Aires. Se tradujo a varios idiomas y ganó popularidad en otros países.' +
+        	'No obstante, en 1972 su autor decidió no volver a dibujarla, pues hasta entonces había vivido presionado por el ritmo que le' +
+        	'imponían las tiras diarias. ' +
+        	'A partir de 1973, año en que se instaló con su esposa en Milán, publicó varios libros de historietas humorísticas entre los que destaca la serie Mundo Quino.' +
+        	'A casi cincuenta años de su nacimiento Mafalda continúa vigente y goza de una enorme popularidad.',
+        	'titulo':'Quino', 'personaje':'Mafalda', 'img':'mafalda.png','top':356,'left':233,'offset_top':-25,'offset_left':0},
+
+        	{'bio':'Nació en Buenos Aires el 26 de octubre de 1909. Con tan sólo 15 años se inició como ayudante de uno de los más grandes y famosos dibujantes humorísticos del momento, Diógenes “Mono” Taborda, y poco más tarde colaboró con Arturo Lanteri, pionero de la historieta local.' +
+        	'En 1925 publicó su primera tira en El Suplemento: “Panitruco”. Luego vinieron "Andanzas y desventuras de Manolo Quaranta", "Don Fermín" y "Un porteño optimista", que luego sería rebautizada "Las aventuras de Don Gil Contento” para el popularísimo diario Crítica.' +
+        	'El 19 de octubre de 1928 apareció por primera vez Patoruzú en el diario Crítica, como personaje secundario de la tira “Aventuras de Don Gil Contento”. En 1936, se publicó el primer número de la revista Patoruzú, que agotó en pocas horas los 100.000 ejemplares. El éxito de Patoruzú y de su partenaire, Isidoro, pronto resultó imparable.' +
+        	'Sus dibujos también formaron parte del séptimo arte: el 20 de noviembre de 1942 se estrenó “Upa en apuros”, que fue el primer dibujo animado argentino en colores. El film suscitó elogios del propio Walt Disney, quien lo invitó a sus estudios para conocer su obra. Desde allí nacería entre ellos una cordial relación de respeto mutuo a través de los años.' +
+        	'A lo largo de su vida recibió numerosos homenajes por su destacado aporte a la cultura nacional. Falleció el 14 de mayo de 2003 a la edad de 93 años.',
+        	'titulo':'Dante Quinterno', 'personaje':'Patoruzú & Isidoro Cañones', 'img':'paturuzu_isidoro.png','top':362,'left':246,'offset_top':567,'offset_left':0},
+
+        	{'bio':'Nació en 1929 en Almería, España. En 1947 llegó a la Argentina, donde se dedicó a la animación. Realizó centenares de cortos publicitarios. En 1952 dibujó para el semanario infantil Billiken su primer comic: Pi Pío, en el cual aparecerían por primera vez Oaky e Hijitus. Creó su propia editorial, ' + 
+        	'y ya en el año 1964 editó la Revista Anteojito. También hizo una enciclopedia para niños y jóvenes, El Libro Gordo de Petete, y lanzó otras dos revistas: Muy Interesante y Ser Padres Hoy.' +
+        	'García Ferré realizó, basado en el éxito de sus personajes, episodios semanales televisivos de la serie animada "Hijitus". ' + 
+        	'Entre 1970 y 1980 dirigió otros programas de TV con diversos personajes, como "Calculín y la familia", "El libro gordo de Petete" y "El club de Anteojito y Antifaz". Realizó también una serie de largometrajes cinematográficos: "Mil Intentos y un Invento" (reestrenada en 2001  como ' +
+        	'"Anteojito y Antifaz: Mil Intentos y un Invento"), "Las aventuras de Hijitus" (1973), "Petete y Trapito" (1975), "Ico, el caballito valiente" (1981), "Manuelita la tortuga" (1999, basado en el personaje de María Elena Walsh) y "Corazón, las alegrías de Pantriste" (2000).',
+        	'titulo':'Manuel García Ferré', 'personaje':'Larguirucho', 'img':'larguirucho.png','top':229,'left':208,'offset_top':770,'offset_left':0},
+
+        	{'bio':'Nació en Mar del Plata en 1949.  Se inició profesionalmente en 1973 publicando viñetas de humor en la revista Siete Días, y posteriormente colaboró en Para Tí, Jocker y La Semana. Pocos meses después se radicó en Europa. En 1978 comenzó a publicar en Clarín y a dibujar para Editorial Perfil. En 1983 comenzó a colaborar en Libre, Semanario y Don. Ese mismo año publicó una tira en Tiempo Argentino. En 1984 se agregó una nueva tira a la anterior en La Razón, además de viñetas diarias. En 1985 nació el personaje "Prudencio", que se publicó desde 1990 en la contratapa de Clarín y que luego derivó en "Yo, Matías", en 1993. Trabajó también en Página 12. ' + 
+        	'Unos años antes, en 1988, comenzó a publicar en la tapa de los avisos clasificados de Clarín. ' + 
+        	'Actualmente colabora en "Acción". Tiene publicados los libros de "Yo Matías" desde el 1 hasta el 10, además de "El diario íntimo de Matías", "El ombligo Observador" y otros relacionados con su personaje. A lo largo de su carrera recibió varios premios.',
+        	'titulo':'Fernando Javier Sendra', 'personaje':'Matías', 'img':'matias2.png','top':322,'left':238,'offset_top':675,'offset_left':0},
+
+        	{'bio':'<b>Horacio Altuna (Dibujante)</b><br/> Nació en Córdoba en 1941. En 1965 publicó su primera tira: Súper Volador. A partir de 1967 colaboró en varias revistas de la Editorial Columba, ilustrando algunos guiones del famoso historietista Oesterheld. En 1974 ilustró un guión de Carlos Trillo, con quien continuó trabajando ' + 
+        	'asiduamente. En 1975 ambos presentaron una tira de historieta en el diario Clarín que salió elegida para publicarse en la contratapa del diario. Así es como nació "El loco Chávez". Altuna es un prestigiosísimo embajador de la historieta argentina en el mundo. <br/> ' + 
+        	'<br/><b>Carlos Trillo (Guionista)</b><br/>Nació en Bs As en 1943. Entre 1964 y 1968 trabajó en la revista Patoruzú. Luego trabajó con García Ferré, escribiendo para series de historietas. En 1972 ingresó a la revista Satiricón. Tres años más tarde trabajó en la revista Mengano, donde publicó “Un tal Daneri” junto a Alberto Breccia. ' +
+        	'Con el hijo de Alberto, realizó “Alvar Mayor”, que fue publicada en varios países. Obtuvo numerosos premios internacionales, entre ellos Yellow Kid. Falleció en Londres el 7 de mayo de 2011.', 
+        	'titulo':'Horacio Altuna<br/>y<br/>Carlos Trillo', 'personaje':'El loco Chávez', 'img':'loco_chavez.png','top':210,'left':247,'offset_top':245,'offset_left':0},	
+
+        	{'bio':'Nació el 16 de julio de 1914. Fue un dibujante, humorista, caricaturista, historietista y editor que, a través de sus ilustraciones e historietas, cambió el pulso del humor gráfico argentino en las décadas de 1940 a 1960. Fue también un gran observador de la idiosincrasia ' +
+        	'argentina, principalmente de los porteños. Empezó a vender sus dibujos para diversas publicaciones como Caricatura Universal, Cascabel y El hogar y llegó a trabajar de forma permanente para Patoruzú. Los dibujos de sus chicas le ocasionaron problemas en el colegio, luego en el servicio militar y ' +
+        	'más tarde le valieron sermones de Dante Quinterno. En 1944 fundó junto a Mario Di Benedetto la revista Rico Tipo, que llegó a tirar 350.000 ejemplares semanales. Desde su revista impuso una galería interminable de personajes: Fallutelli, Bambolo, Pochita Morfoni, ' + 
+        	'La familia Pichinini y El Otro Yo del Dr. Merengue. Murió en un accidente de auto el 5 de julio de 1969.', 
+        	'titulo':'Guillermo Divito', 'personaje':'Chicas Divito', 'img':'divito.png','top':210,'left':214,'offset_top':115,'offset_left':0},
+
+        	{'bio':'Nació el 5 de noviembre de 1903 en Buenos Aires. Desde muy chico fue atraído por el dibujo y a los 16 años logró publicar su primer trabajo en el diario La Razón. Profesor de dibujo, en 1938 realizó un mural para el hall central de la Exposición Mundial de Nueva York. Su trazo tan personal y su fino humor lo hicieron indispensable en todo tipo de publicaciones. Durante su exitosa carrera ganó 25 concursos de afiches. A lo largo de 20 años dibujó las tapas de Billiken. Creó personajes famosos como "Avivato" y "Don Fulgencio", adaptados al cine con gran éxito. Otro personaje entrañable fue "Ramona". Con el seudónimo de Flax se especializó en la sátira política y durante la Segunda Guerra Mundial sus ' + 
+        	'trabajos recorrieron el mundo. En 1984, Lino y su señora fueron asesinados en un intento de robo',
+        	'titulo':'Lino Palacio', 'personaje':'Don Fulgencio', 'img':'don_fulgencio.png','top':273,'left':205,'offset_top':865,'offset_left':0},
+
+        	{'bio':'Carlos Loiseau nació en Salta el 9 de noviembre de 1948. Sus dibujos comenzaron a publicarse en 1966 en la famosa revista Tía Vicenta. En 1967 creó su serie "Artista, Flor, Ejecutivo". Desde entonces, sus dibujos aparecieron en numerosas publicaciones. Fue dibujante de las ' + 
+        	'secciones Humorística y Política de la revista Análisis de 1968 a 1971. Desde 1968 figuró en distintas secciones del diario Clarín y desde 1973 hasta el 2012 apareció en ese medio la tira diaria "Clemente", así como en una página de humor en la revista dominical Viva. ' +
+        	'Entre 1976 y 1982 publicó una página semanal sobre temas deportivos en la revista El Gráfico. Algunos de sus dibujos fueron reproducidos en Uruguay, Brasil, Venezuela, Colombia, México, España, Francia, Italia, EE.UU., Cuba, Bélgica, Alemania, Bolivia y Puerto Rico. Varios ' +
+        	'museos alrededor del mundo hoy exhiben sus originales y reproducciones en forma permanente. Clemente fue nombrado en 2004 "Patrimonio cultural de la Ciudad" y Caloi "Personalidad destacada de la cultura” y “Ciudadano ilustre de la Ciudad Autónoma de Buenos Aires”. ' + 
+        	'A lo largo de su carrera, ha sido merecedor de varios premios, entre los que se destacan el Premio "KONEX" de las artes plásticas (1982 y 1992). Caloi falleció el 8 de mayo de 2012.', 
+        	'titulo':'Caloi', 'personaje':'Clemente', 'img':'clemente.png','top':340,'left':212,'offset_top':355,'offset_left':0},
+
+        	{'bio':'Nació en Buenos Aires en 1971. Su nombre completo es Cristian Dzwonik. Es egresado del Colegio Nacional de Buenos Aires y Diseñador Gráfico recibido en la UBA. Completó además estudios de publicidad, computación gráfica y fotomontaje digital. ' + 
+			'Dibuja desde la más temprana edad. A los 11 años ingresó en la escuela de Carlos Garaycochea y Eduardo Ferro.<br/> Publicó su primer dibujo a los 14 años en la revista Patoruzú, pero profesionalmente lo hizo desde los 17 años en la revista "Muy Interesante", de García Ferré. Trabajó además ' +
+			'en la editorial Kapelusz, el diario El Cronista, la revista de Cablevisión y, desde 1994, en el semanario Noticias. A los 22 años ingresó en el diario La Nación y desde entonces se desempeña como humorista gráfico de actualidad en varias secciones. Desde 1992 el chiste ' +
+			'político del cuerpo del diario, la “foto que habla” o la página dominical de la revista, son considerados verdaderos editoriales de la realidad argentina.<br/> En 1996 "Gaturro" y su familia tomaron cuerpo en la tira diaria de la última página de ' +
+			'La Nación. Estos personajes fueron publicados luego por varios periódicos de Latinoamérica. En el año 2002 Nik recibió el premio Kónex de Platino, que distingue al mejor humorista gráfico argentino de los últimos 10 años. Nik lleva publicados más de 30 libros..<br/><br/><br/>',
+			'titulo':'Nik', 'personaje':'Gaturro', 'img':'gaturro.png','top':300,'left':209,'offset_top':460,'offset_left':0},
+        	
+        	
+        	
+        	
+        	
+        	
+        	{'bio':'Nació en Buenos Aires el 15 de noviembre de 1973. Su nombre completo es Ricardo Liniers Siri. Empezó haciendo fanzines (revista para fanáticos). Sus trabajos aparecieron en la revista Rolling Stone, Spirou, y La Mano, entre otras. '+
+				'Publicó libros de sus historietas en La Nación (Macanudo 1 a 9), una recopilación de su obra publicada en el Suplemento NO de Página 12 (Bonjour), un libro para niños (Lo que hay antes de que haya algo), y uno sobre sus cuadernos de bocetos (Cuadernos). '+
+				'Algunos de estos libros están publicados en España, Perú, Canadá, Italia y Francia. Realizó varias muestras de pintura, como Macanudo (2001), Mono en Bicicleta (2003), Cuadernos (2006) y Estudio Abierto (2006). '+
+				'En 2007 una muestra de originales de la tira Macanudo rotó por las distintas distribuidoras de bienes culturales de España. Durante el 2010 su muestra Macanudísimo estuvo en el Centro Cultural Recoleta y en el Centro Cultural Parque España (Rosario). '+
+				'Hizo la tapa de los discos de Kevin Johansen (Logo) y de Andrés Calamaro (La Lengua Popular). Actualmente realiza giras por Latinoamérica y Europa en las que él pinta en vivo mientras su amigo Kevin Johansen canta. Está casado, contento y fue a la Antártida.<br/><br/><br/>',
+    			'titulo':'Liniers', 'personaje':'Enriqueta', 'img':'enriqueta.png','top':300,'left':162,'offset_top':988,'offset_left':0},
+        	
+        	{'bio':'Nació en Rosario el 26 de noviembre de 1944. Negado para las matemáticas, la física y la química, Fontanarrosa dejó el secundario después de repetir tercer año. En 1972 surgió en Córdoba la revista humorística "Hortensia", que llegó a tirar más de cien mil ejemplares por número. Allí nacieron sus dos hijos: Boogie el aceitoso e Inodoro Pereyra, el renegau. A los 28 años publicó su primer volumen de humor gráfico por Ediciones de la Flor. A partir de entonces, y con el mismo sello, aparecieron tomos humorísticos con los más diversos temas: el fútbol, la política, el sexo, la cultura....Hacia 1976 Inodoro se instaló junto a la Eulogia y Mendieta en el diario "Clarín". Para entonces el bar "El Cairo", en Rosario, se había transformado ya en el sitio de encuentro de la "mesa de los galanes", después inmortalizada en uno de los libros del humorista: una veintena de hombres que se reunían todas las tardes y no hablaban de nada importante. A partir de 1980 comenzó a colaborar en la elaboración de los espectáculos de Les Luthiers. Como literato, publicó numerosas recopilaciones de cuentos, como El mundo ha vivido equivocado (1982), No sé si he sido claro (1986) y Nada del otro mundo (1987). Su dedicación al relato breve se intensificó en sus últimos años, en los que publicó El mayor de mis defectos (1990), Los trenes matan a los autos (1992), Uno nunca sabe (1993), La mesa de los Galanes (1995), Una lección de vida (1998), Te digo más... (2001), Usted no me lo va a creer (2003) y El rey de la milonga (2005). Falleció en Rosario el 19 de julio de 2007.<br/><br/><br/>',
+    			'titulo':'Fontanarosa', 'personaje':'Inodoro Pereyra', 'img':'inodoro.png','top':300,'left':209,'offset_top':284,'offset_left':0},
+
+        	{'bio':'Nació en Casbas, Provincia de Buenos Aires, el 1 de junio de 1928. Se recibió en la Escuela Nacional de Bellas Artes en 1949, a los 21 años. Se dedicó al dibujo humorístico, colaborando con las revistas El Gráfico, Atlántida,Billiken, Esto Es, TV Guía, Gente, Rico Tipo, Patoruzú, Humor y otras. Sus trabajos también fueron publicados en los diarios Crítica, El Mundo, La Nación, Crónica, El Cronista Comercial y Tiempo Argentino. Participó en programas de televisión en casi todos los canales, y también realizó trabajos de publicidad para varias empresas comerciales.Ha realizado muestras individuales y colectivas, y además ha escrito libros, entre los que podemos citar Donde vamos a parar, Los deportistas son una risa, entre otros. Actualmente es el Presidente de la Asociación de Dibujantes Argentinos, tiene su propia escuela de dibujo, y su creatividad la expresa a través de las artes plásticas.<br/><br/><br/>',
+    			'titulo':'Garaycochea', 'personaje':'Catalina', 'img':'catalina.png','top':300,'left':209,'offset_top':493,'offset_left':0},
+
+        	{'bio':'Nací, como todo el mundo, a los nueve meses de edad.'+
+      			'La cosa ocurrió en el famoso barrio de Villa Pueyrredón,'+ 
+        		'en una calle con nombre de pianista: Argerich, allá por Buenos Aires.'+
+        		'Más tarde me enteré que fue un 4 de Agosto de 1932.'+
+        		'Mi hermana Teresa nació en una calle donde, según Abel Santa Cruz,'+
+        		'no hay más remedio que nacer: Nazca.'+
+        		'Finalmente nos decidimos por la calle Cabezón, esquina Condarco, a '+
+        		'mediados del 35.'+
+        		'A mi padre, que era electricista, le gustaba inventar cosas raras, a mí me hizo dibujante humorista.'+
+        		'Empecé mi larga carrera a los cinco años cuando, de la mano de mi mamá, la '+
+        		'llevé al cine para ver « Blanca Nieves y los siete enanos ».'+
+        		'A partir de ahí, creo haber dibujado todos los días.'+
+        		'Ah ! también fui a la escuela.'+
+        		'A los dieciocho años se me dio por ilustrar cuatro libros de cuentos para Editorial'+ 
+        		'Codex, al mismo tiempo entré por la puerta que daba a la calle a los Estudios '+
+        		'de Dibujos Animados de Burone Bruché.'+
+        		'También ilustré historietas con guiones de Aldo Camarotta.'+
+        		'En mi tiempo libre, es decir todos los días, me las arreglaba para jugar al fútbol,'+
+        		'perdón, a la pelota, en las calles y terrenos baldíos del barrio con mis amiguitos, '+
+        		'entre los cuales Eduardo Balducci, Juan Carlos Copes, Humberto Andreacchio y'+
+        		'muchos otros que también se hicieron famosos.'+
+        		'Pero un día, el 7 de Noviembre de 1955, me fui.'+
+        		'Primero al Perú, con intenciones de hacer dibujos animados siguiendo la'+
+        		'proposición de mi colega y amigo Jorge Caro.'+
+        		'Pero la idea no cuajó y sólo trabajé en publicidad.'+
+        		'En 1960 el viento me llevó hacia el norte. Me tomé un avión, un micro y mi'+
+        		'última Coca-Cola y recalé en Nueva York.'+
+        		'A los diez días conseguí trabajo como imbetweener (intermediador) en los'+
+        		'Estudios Paramount y ahí me di cuenta que estaba en el extranjero porque a '+
+        		'Espagueti lo llamaban Popeye. . .'+
+        		'Al año me cansé de hacer dibujos que de animados tenían muy poco y me fui'+
+        		'por ahí para hacer « greetings cards », léase tarjetas humorísticas.'+
+        		'Finalmente puse fin a la aventura americana y me subí a un Queen Mary que'+ 
+        		'pasaba por allí rumbo a Europa, la tierra de mis antepasados; incluidos mis '+
+        		'padres.'+
+        		'El 26 de Agosto de 1963 llegué al Peñón de Gibraltar, con otro barquito '+
+        		'desembarqué en Algeciras , España.'+
+        		'De ahí en más, un tren me llevó hasta un Madrid franquista; otro a Barcelona'+
+        		'(idem, pero menos) y crucé la frontera para llegar a Perpignan. Otra ruta me'+
+        		'lleva hasta Versailles y el último ferrocarril (oeste, supongo) me deja en París.'+
+        		'Llovía, caía la noche, pero tuve la suerte de conseguir una habitación de hotel'+
+        		'en un sexto piso sin ascensor, sin baño, una cuerda de pared en guisa'+
+        		'de armario, sin cuatro muros, una buhardilla que le dicen, ciento cincuenta'+
+        		'dólares en el bolsillo, solo, pero inconscientemente feliz! Estaba en París!'+
+        		'Eso fue un viernes 19 de Septiembre de 1963. Al lunes siguiente me presenté'+
+        		'en dos editoriales de tarjetas humorísticas, los obligué a hablarme en Inglés'+
+        		'hasta que uno de ellos me ofreció trabajo.'+
+        		'Enseguida, por cuestiones idiomáticas, me inscribí en la Alianza Francesa'+
+        		'por dos años, hasta el diploma.'+
+        		'Durante tres años realicé toda la producción de la Editorial Mic-Max, así se'+
+        		'llamaba, hasta que creí llegado el momento de pedir un aumento, pero lo'+
+        		'único que conseguí fue aumentar la lista de parados parisinos.'+
+        		'Solo, todavía no conocía a Amparo (nombre premonitorio) ni mucho menos'+
+        		'a Sébastien y Cécile, mis futuros hijos. Sin trabajo, ancla’o en París, con un idioma local embrionario, resumiendo: en Pampa y la vía.'+
+        		'Qué hacer ?'+
+        		'La idea de volver con la frente marchita a la habitación que no tenía en la casita'+
+        		'alquilada de mis viejos no me seducía. . .'+
+        		'Elegí tirar el manotazo de ahogado y hacer otra cosa: dibujos mudos para las'+
+        		'revistas y periódicos. Me salió bien. » Se te fue la mano » como me dijo Carlitos'+
+        		'Garaycochea.'+
+        		'El resto ya es más conocido.<br/><br/><br/>',
+    			'titulo':'Mordillo', 'personaje':'Jirafa banquito', 'img':'jirafa.png','top':300,'left':209,'offset_top':-12,'offset_left':0}
+
+	];	
+
+	$('#bioscroll').tinyscrollbar();
+	
+	/* Personaje inicial */
+	var pos = 0;
+
+	function mostrar_bio() {
+		$('#bio_personaje').html('<img src="../images/'+ autores[pos].img + '"/>').css({'top':autores[pos].top+'px', 'left':autores[pos].left+'px'});
+		$('#bioscroll .overview').html(autores[pos].bio);
+		$('#bioscroll').tinyscrollbar_update();
+		
+		if(pos>8)
+			$('#globa').css({'background-position':autores[pos].offset_left + 'px ' + autores[pos].offset_top + 'px','background-image':'url(../images/globa_autores2.png)'});
+		else	
+			$('#globa').css({'background-position':autores[pos].offset_left + 'px ' + autores[pos].offset_top + 'px','background-image':'url(../images/globa_autores.png)'});
+	}
+
+	$('#ant').click(function(){
+		pos--;
+		if(pos<0)
+			pos = 12;
+		mostrar_bio();
+	});
+	
+	$('#sig').click(function(){
+		pos++;
+		if(pos>12)
+			pos = 0;
+		mostrar_bio();
+	});
+	
+	mostrar_bio();
+</script>
+</body>
+</html>
