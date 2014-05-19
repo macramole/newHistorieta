@@ -66,10 +66,12 @@ $(document).ready(function(){
     		return;
     	menu_busy=true;
     	if(menu_state==0) {
+            $('#menuAutores').hide();
     		$('#menu').animate({height:'380px'},500,function(){menu_busy=false;});
     		menu_state=1;
     	} else {
-    		$('#menu').animate({height:'157px'},500,function(){menu_busy=false;});
+    		$('#menuAutores').show();
+            $('#menu').animate({height:'157px'},500,function(){menu_busy=false;});
     		menu_state=0;
     	}
     });
@@ -89,6 +91,13 @@ $(document).ready(function(){
 	    		clearTimeout(menu_timer);
 	    });
     
+    $('#menu a').click( function(e) {
+       if ( $(this).attr('href') == document.location.href ) {
+           e.preventDefault();
+            $('#m_menu').click();
+       }
+    });
+    
     $('#pajarito').hover(animarPajarito);
     setInterval(animarPajarito,2000);
     
@@ -96,21 +105,6 @@ $(document).ready(function(){
     	document.location = 'controller.php';
     });
 });
-
-//Facebook (requiere que este declarada la URL corta)
-function fb_click() {
-//	var u=g_url_corta;
-//	var t="Paseo de la historieta";
-//	window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t), "sharer","toolbar=0,status=0,width=660,height=300");
-	return false;
-}
-
-//Twitter
-function twt_click() {
-//	var u="Descubrí todos tus personajes favoritos en el #PaseoHistorietaBA. Ingresá en " + g_url_corta; 
-//	window.open('http://twitter.com/home?status='+encodeURIComponent(u), "sharer","toolbar=0,status=0,width=626,height=236");
-	return false;
-}    
 
 //Animacion de la globa del pajarito
 var pajarito_state=0;

@@ -70,9 +70,25 @@
                     <div class="bioWrapper">
                         <?= $entrada['cuerpo'] ?>
                     </div>
+                    
+                    <div class="social">
+                        <iframe 
+                            src="//www.facebook.com/plugins/like.php?href=<?= $entrada['url'] ?>&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=21&amp;appId=432106796909449" 
+                            scrolling="no" 
+                            frameborder="0" 
+                            style="border:none; overflow:hidden; height:21px; width: 130px;" 
+                            allowTransparency="true"></iframe>
+                        
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?= $entrada['url'] ?>" data-via="CiudadaniaBA" data-lang="es"></a>
+                    </div>
+                    
+                    <?php if ( $autor['entradaUnica'] ) : ?>
+                    <a href="<?= $autor['url'] ?>" class="verTodas">&lt; ver todas las entradas</a>
+                    <?php endif; ?>
                 </div>
             </div>
-            <?php endforeach ?>
+            <?php endforeach; ?>
+            
             <?php magico_setData($autor['entradas'], 'Entrada', '.nota') ?> 
             <?php magico_setEditables($autor['entradas'], 'Entrada', 'cuerpo', '.bioWrapper'); ?>
         </div>
@@ -106,6 +122,11 @@
             }
         });
         
+        $('#m_autores').click(function(e) {
+            e.preventDefault();
+            $('#m_menu').click();
+        });
+        
         $('.notaInnerWrapper').mCustomScrollbar({
             scrollInertia: 0,
             mouseWheelPixels: 20,
@@ -119,3 +140,4 @@
         });
     });		
 </script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

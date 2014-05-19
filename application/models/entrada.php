@@ -5,8 +5,8 @@ class Entrada extends MY_Model {
 	/*** Datos básicos ***/
 	public static $name = "Entrada";
 	public static $table = "entradas";
-	public static $returnURL = '{idAutor}';
-    public static $hayPaginaIndividual = false;
+	public static $returnURL = '{idAutor}/{title}';
+    public static $hayPaginaIndividual = true;
 	
 	function __construct($id = null)
 	{

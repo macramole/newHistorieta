@@ -28,18 +28,33 @@ class Autores extends MasterController
     {
         $autor = magico_getByUrlClean();
         
-        if ( $autor )
+        if ( $autor ) //Esto puede recibir o un autor o una entrada individual
         {
             $autores = magico_getList('autores', null, null, null, 'weight ASC');
             
+            if ( $autor['idAutor'] )  { //si es una entrada
+                $this->load->model('Autor');
+                $entrada = $autor;
+                $autor = Autor::getRowArray($entrada['idAutor']);
+                $this->setFacebookDescription($autor['title'] . ' // ' . $entrada['title']);
+            }
+            
             magico_getImageToRow($autor, 'autores', 128, 165);
             $autor['personajes'] = magico_getList('personajes', 112, 116, "idAutor = '$autor[id]'", 'weight ASC');
-            $autor['entradas'] = $this->db->get_where('entradas', array('idAutor' => $autor['id']))->result_array();
+            
+            if ( !$entrada ) {
+                $this->load->model('Entrada');
+                $autor['entradas'] = Entrada::getListArray(null, null, "idAutor = '$autor[id]'");
+            } else {
+                $autor['entradas'][] = $entrada;
+                $autor['entradaUnica'] = true;
+            }
             
             foreach( $autores as &$itemAutor )
                 if ( $itemAutor['id'] == $autor['id'] )
                     $itemAutor['selected'] = true;
             
+            $this->setFacebookImage($autor['imagen']);
             $this->addContentPage('autores', array('autor' => $autor, 'autores' => $autores));
             $this->addFondo(10, 1);
             $this->show();
