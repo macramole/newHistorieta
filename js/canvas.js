@@ -143,23 +143,23 @@ function dibujarEstacion(){
 
 		//Post slide
 		if(actual==0) { //mafalda
-			$('#globa_personaje').css({top:'169px',left:'118px'}).html('<img src="images/globa_mafalda.png" width="350"/>');
-			$('#personaje').css({top:'340px',left:'212px'}).html('<img src="images/mafalda.png"/>').show();
+			$('#globa_personaje').css({top:'169px',left:'225px'}).html('<img src="images/globa_mafalda.png" width="350"/>');
+			$('#personaje').css({top:'340px',left:'330px'}).html('<img src="images/mafalda.png"/>').show();
 			$('#texto_home').show();
 		}
 		if(actual==1) { //isidoro
-			$('#globa_personaje').css({top:'146px',left:'169px'}).html('<img src="images/globa_isidoro.png" width="350"/>');
-			$('#personaje').css({top:'248px',left:'200px'}).html('<img src="images/isidoro.png"/>').show();
+			$('#globa_personaje').css({top:'146px',left:'300px'}).html('<img src="images/globa_isidoro.png" width="350"/>');
+			$('#personaje').css({top:'248px',left:'330px'}).html('<img src="images/isidoro.png"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==2) { //larguirucho
-			$('#globa_personaje').css({top:'170px',left:'118px'}).html('<img src="images/globa_larguirucho.png" width="350"/>');
-			$('#personaje').css({top:'269px',left:'203px'}).html('<img src="images/larguirucho.png"/>').show();
+			$('#globa_personaje').css({top:'170px',left:'238px'}).html('<img src="images/globa_larguirucho.png" width="350"/>');
+			$('#personaje').css({top:'269px',left:'323px'}).html('<img src="images/larguirucho.png"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==3) { //matias
-			$('#globa_personaje').css({top:'188px',left:'118px'}).html('<img src="images/globa_matias.png" width="350"/>');
-			$('#personaje').css({top:'355px',left:'246px'}).html('<img src="images/matias.png"/>').show();
+			$('#globa_personaje').css({top:'188px',left:'290px'}).html('<img src="images/globa_matias.png" width="350"/>');
+			$('#personaje').css({top:'355px',left:'380px'}).html('<img src="images/matias.png"/>').show();
 			$('#texto_home').hide();
 		}
 		/*if(actual==4) { //loco chavez
@@ -168,58 +168,58 @@ function dibujarEstacion(){
 			$('#texto_home').hide();
 		}*/
 		if(actual==4) { //divito
-			$('#globa_personaje').css({top:'83px',left:'167px'}).html('<img src="images/globa_divito.png" width="350"/>');
-			$('#personaje').css({top:'240px',left:'230px'}).html('<img src="images/divito.png"/>').show();
+			$('#globa_personaje').css({top:'83px',left:'287px'}).html('<img src="images/globa_divito.png" width="350"/>');
+			$('#personaje').css({top:'240px',left:'350px'}).html('<img src="images/divito.png"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==5) { //don fulgencio
-			$('#globa_personaje').css({top:'178px',left:'193px'}).html('<img src="images/globa_don_fulgencio.png" width="350"/>');
-			$('#personaje').css({top:'270px',left:'190px'}).html('<img src="images/don_fulgencio.png"/>').show();
+			$('#globa_personaje').css({top:'178px',left:'313px'}).html('<img src="images/globa_don_fulgencio.png" width="350"/>');
+			$('#personaje').css({top:'270px',left:'310px'}).html('<img src="images/don_fulgencio.png"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==6) { //clemente
-			$('#globa_personaje').css({top:'170px',left:'227px'}).html('<img src="images/globa_clemente.png" width="350"/>');
-			$('#personaje').css({top:'358px',left:'196px'}).html('<img src="images/clemente.png"/>').show();
+			$('#globa_personaje').css({top:'170px',left:'347px'}).html('<img src="images/globa_clemente.png" width="350"/>');
+			$('#personaje').css({top:'358px',left:'316px'}).html('<img src="images/clemente.png"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==7) { //patoruzu
-			$('#globa_personaje').css({top:'113px',left:'342px'}).html('<img src="images/globa_patoruzu.png" width="350"/>');
-			$('#personaje').css({top:'233px',left:'246px'}).html('<img src="images/patoruzu.png"/>').show();
+			$('#globa_personaje').css({top:'113px',left:'452px'}).html('<img src="images/globa_patoruzu.png" width="350"/>');
+			$('#personaje').css({top:'233px',left:'356px'}).html('<img src="images/patoruzu.png"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==8) { //gaturro
-			$('#globa_personaje').css({top:'170px',left:'118px'}).html('<img src="images/globa_gaturro.png" width="350"/>');
-			$('#personaje').css({top:'320px',left:'188px'}).html('<img src="images/gaturro.png"/>').show();
+			$('#globa_personaje').css({top:'170px',left:'238px'}).html('<img src="images/globa_gaturro.png" width="350"/>');
+			$('#personaje').css({top:'320px',left:'308px'}).html('<img src="images/gaturro.png"/>').show();
 			$('#texto_home').hide();
 		}
         if(actual==9) { //don nicola
-			$('#globa_personaje').css({top:'80px',left:'218px'}).html('<img src="images/Globa-Don-Nicola.png" width="350"/>');
-			$('#personaje').css({top:'212px',left:'145px'}).html('<img src="images/Don-Nicola.png" width="400"/>').show();
+			$('#globa_personaje').css({top:'80px',left:'358px'}).html('<img src="images/Globa-Don-Nicola.png" width="350"/>');
+			$('#personaje').css({top:'212px',left:'285px'}).html('<img src="images/Don-Nicola.png" width="400"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==10) { //diogenes
-			$('#globa_personaje').css({top:'170px',left:'235px'}).html('<img src="images/Globa-Diogenes-y-el-Linyera.png" width="350"/>');
-			$('#personaje').css({top:'225px',left:'170px'}).html('<img src="images/Diogenes-y-el-Linyera.png" width="400"/>').show();
+			$('#globa_personaje').css({top:'170px',left:'355px'}).html('<img src="images/Globa-Diogenes-y-el-Linyera.png" width="350"/>');
+			$('#personaje').css({top:'225px',left:'290px'}).html('<img src="images/Diogenes-y-el-Linyera.png" width="350"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==11) { //jirafa
-			$('#globa_personaje').css({top:'0px',left:'275px'}).html('<img src="images/Globa-Jirafa-Mordillo.png" width="350"/>');
-			$('#personaje').css({top:'125px',left:'157px'}).html('<img src="images/Jirafa-Mordillo.png" width="400"/>').show();
+			$('#globa_personaje').css({top:'0px',left:'420px'}).html('<img src="images/Globa-Jirafa-Mordillo.png" width="350"/>');
+			$('#personaje').css({top:'125px',left:'300px'}).html('<img src="images/Jirafa-Mordillo.png" width="385"/>').show();
 			$('#texto_home').hide();
 		}		
 		if(actual==12) { //negrazon
-			$('#globa_personaje').css({top:'127px',left:'237px'}).html('<img src="images/Globa-Negrazon-y-Chaveta.png" width="350"/>');
-			$('#personaje').css({top:'220px',left:'140px'}).html('<img src="images/Negrazon-y-Chaveta.png" width="400"/>').show();
+			$('#globa_personaje').css({top:'127px',left:'357px'}).html('<img src="images/Globa-Negrazon-y-Chaveta.png" width="350"/>');
+			$('#personaje').css({top:'220px',left:'260px'}).html('<img src="images/Negrazon-y-Chaveta.png" width="400"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==13) { //Inodoro Pereyra
-			$('#globa_personaje').css({top:'118px',left:'209px'}).html('<img src="images/Globa-Inodoro-Pereyra.png" width="350"/>');
-			$('#personaje').css({top:'235px',left:'150px'}).html('<img src="images/Inodoro-Pereyra.png" width="400"/>').show();
+			$('#globa_personaje').css({top:'118px',left:'339px'}).html('<img src="images/Globa-Inodoro-Pereyra.png" width="330"/>');
+			$('#personaje').css({top:'235px',left:'280px'}).html('<img src="images/Inodoro-Pereyra.png" width="380"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==14) { //Langostino-y-Corina
-			$('#globa_personaje').css({top:'57px',left:'230px'}).html('<img src="images/Globa-Langostino-y-Corina.png" width="350"/>');
-			$('#personaje').css({top:'160px',left:'145px'}).html('<img src="images/Langostino-y-Corina.png" width="400"/>').show();
+			$('#globa_personaje').css({top:'57px',left:'390px'}).html('<img src="images/Globa-Langostino-y-Corina.png" width="320"/>');
+			$('#personaje').css({top:'160px',left:'305px'}).html('<img src="images/Langostino-y-Corina.png" width="355"/>').show();
 			$('#texto_home').hide();
 		}
 		animarPajarito();
