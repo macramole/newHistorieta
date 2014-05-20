@@ -152,7 +152,7 @@ function dibujarEstacion(){
 			$('#texto_home').hide();
 		}
 		if(actual==3) { //matias
-			$('#globa_personaje').css({top:'180px',left:'35px'}).html('<img src="images/globa_matias.png" width="350"/>');
+			$('#globa_personaje').css({top:'180px',left:'350px'}).html('<img src="images/globa_matias.png" width="350"/>');
 			$('#personaje').css({top:'355px',left:'380px'}).html('<img src="images/matias.png"/>').show();
 			$('#texto_home').hide();
 		}
@@ -162,7 +162,7 @@ function dibujarEstacion(){
 			$('#texto_home').hide();
 		}*/
 		if(actual==4) { //divito
-			$('#globa_personaje').css({top:'110px',left:'287px'}).html('<img src="images/globa_divito.png" width="350"/>');
+			$('#globa_personaje').css({top:'75px',left:'287px'}).html('<img src="images/globa_divito.png" width="350"/>');
 			$('#personaje').css({top:'240px',left:'350px'}).html('<img src="images/divito.png"/>').show();
 			$('#texto_home').hide();
 		}
@@ -172,8 +172,8 @@ function dibujarEstacion(){
 			$('#texto_home').hide();
 		}
 		if(actual==6) { //clemente
-			$('#globa_personaje').css({top:'170px',left:'347px'}).html('<img src="images/globa_clemente.png" width="350"/>');
-			$('#personaje').css({top:'415px',left:'160px'}).html('<img src="images/clemente.png"/>').show();
+			$('#globa_personaje').css({top:'200px',left:'347px'}).html('<img src="images/globa_clemente.png" width="350"/>');
+			$('#personaje').css({top:'415px',left:'285px'}).html('<img src="images/clemente.png"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==7) { //patoruzu
@@ -212,7 +212,7 @@ function dibujarEstacion(){
 			$('#texto_home').hide();
 		}
 		if(actual==14) { //Langostino-y-Corina
-			$('#globa_personaje').css({top:'57px',left:'390px'}).html('<img src="images/Globa-Langostino-y-Corina.png" width="320"/>');
+			$('#globa_personaje').css({top:'57px',left:'300px'}).html('<img src="images/Globa-Langostino-y-Corina.png" width="320"/>');
 			$('#personaje').css({top:'160px',left:'305px'}).html('<img src="images/Langostino-y-Corina.png" width="355"/>').show();
 			$('#texto_home').hide();
 		}
