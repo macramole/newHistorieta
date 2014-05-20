@@ -142,17 +142,17 @@ function dibujarEstacion(){
 			$('#texto_home').show();
 		}
 		if(actual==1) { //isidoro
-			$('#globa_personaje').css({top:'146px',left:'300px'}).html('<img src="images/globa_isidoro.png" width="350"/>');
+			$('#globa_personaje').css({top:'95px',left:'300px'}).html('<img src="images/globa_isidoro.png" width="350"/>');
 			$('#personaje').css({top:'248px',left:'330px'}).html('<img src="images/isidoro.png"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==2) { //larguirucho
-			$('#globa_personaje').css({top:'170px',left:'238px'}).html('<img src="images/globa_larguirucho.png" width="350"/>');
+			$('#globa_personaje').css({top:'85px',left:'400px'}).html('<img src="images/globa_larguirucho.png" width="350"/>');
 			$('#personaje').css({top:'269px',left:'323px'}).html('<img src="images/larguirucho.png"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==3) { //matias
-			$('#globa_personaje').css({top:'188px',left:'290px'}).html('<img src="images/globa_matias.png" width="350"/>');
+			$('#globa_personaje').css({top:'180px',left:'35px'}).html('<img src="images/globa_matias.png" width="350"/>');
 			$('#personaje').css({top:'355px',left:'380px'}).html('<img src="images/matias.png"/>').show();
 			$('#texto_home').hide();
 		}
@@ -162,27 +162,27 @@ function dibujarEstacion(){
 			$('#texto_home').hide();
 		}*/
 		if(actual==4) { //divito
-			$('#globa_personaje').css({top:'83px',left:'287px'}).html('<img src="images/globa_divito.png" width="350"/>');
+			$('#globa_personaje').css({top:'110px',left:'287px'}).html('<img src="images/globa_divito.png" width="350"/>');
 			$('#personaje').css({top:'240px',left:'350px'}).html('<img src="images/divito.png"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==5) { //don fulgencio
-			$('#globa_personaje').css({top:'178px',left:'313px'}).html('<img src="images/globa_don_fulgencio.png" width="350"/>');
+			$('#globa_personaje').css({top:'130px',left:'370px'}).html('<img src="images/globa_don_fulgencio.png" width="350"/>');
 			$('#personaje').css({top:'270px',left:'310px'}).html('<img src="images/don_fulgencio.png"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==6) { //clemente
 			$('#globa_personaje').css({top:'170px',left:'347px'}).html('<img src="images/globa_clemente.png" width="350"/>');
-			$('#personaje').css({top:'358px',left:'316px'}).html('<img src="images/clemente.png"/>').show();
+			$('#personaje').css({top:'415px',left:'160px'}).html('<img src="images/clemente.png"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==7) { //patoruzu
-			$('#globa_personaje').css({top:'113px',left:'452px'}).html('<img src="images/globa_patoruzu.png" width="350"/>');
+			$('#globa_personaje').css({top:'95px',left:'320px'}).html('<img src="images/globa_patoruzu.png" width="350"/>');
 			$('#personaje').css({top:'233px',left:'356px'}).html('<img src="images/patoruzu.png"/>').show();
 			$('#texto_home').hide();
 		}
 		if(actual==8) { //gaturro
-			$('#globa_personaje').css({top:'170px',left:'238px'}).html('<img src="images/globa_gaturro.png" width="350"/>');
+			$('#globa_personaje').css({top:'190px',left:'360px'}).html('<img src="images/globa_gaturro.png" width="350"/>');
 			$('#personaje').css({top:'320px',left:'308px'}).html('<img src="images/gaturro.png"/>').show();
 			$('#texto_home').hide();
 		}
