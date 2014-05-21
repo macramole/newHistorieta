@@ -8,6 +8,13 @@ class MasterController extends MY_Controller {
 	
 	protected $_pageTitle = 'Paseo de la historieta';
 	
+    function __construct() {
+        parent::__construct();
+        
+        $this->setFacebookDescription('Paseo de la historieta BA');
+        $this->setFacebookImage('images/logo_fb.jpg');
+    }
+    
     public function addFondo( $fondoIndex, $cantidad )
     {
         $this->addContentPage("fondos", array( 'fondoIndex' => $fondoIndex, 'cantidad' => $cantidad ), "Fondos");

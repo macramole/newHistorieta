@@ -3,10 +3,12 @@ include_once('MasterController.php');
 
 class Contacto extends MasterController
 {	
-	const MAIL_CONTACTO = 'leandrogarber@gmail.com';//'paseodelahistorieta@buenosaires.gob.ar';
+	const MAIL_CONTACTO = 'paseodelahistorieta@buenosaires.gob.ar';
     
     public function index()
 	{
+        
+        $this->setSectionTitle("Contacto");
 		$this->addContentPage('contacto');
         $this->addFondo(11, 1);
 		$this->show();

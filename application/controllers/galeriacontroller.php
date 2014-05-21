@@ -56,7 +56,13 @@ class GaleriaController extends MasterController
         $this->load->model('Galeria');
         $galerias = array( Galeria::getRowArray(2) );
         
-        $this->addContentPage('galeria', array('galerias' => $galerias, 'personajes' => array(), 'galeriaSeleccionada' => $this->getGaleria(2, 'galerias') ));
+        $galeria = $this->getGaleria(2, 'galerias');
+        
+        $this->setFacebookDescription("Galeria de $galeria[title] en el Paseo de la historieta BA");
+        $this->setFacebookImage($galeria['imagenes'][0]);
+        $this->setSectionTitle("Galeria de $galeria[title]");
+        
+        $this->addContentPage('galeria', array('galerias' => $galerias, 'personajes' => array(), 'galeriaSeleccionada' => $galeria ));
         $this->addFondo(10, 1);
         $this->show();
     }
@@ -110,6 +116,10 @@ class GaleriaController extends MasterController
             else
                 $galeria['type'] = 'Personaje';
 
+            $this->setFacebookDescription("Galeria de $galeria[title] en el Paseo de la historieta BA");
+            $this->setFacebookImage($galeria['imagenes'][0]);
+            $this->setSectionTitle("Galeria de $galeria[title]");
+            
             $this->addContentPage('galeria', array('galerias' => $galerias, 'personajes' => $personajes, 'galeriaSeleccionada' => $galeria));
             $this->addFondo(10, 1);
             $this->show();

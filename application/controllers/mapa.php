@@ -33,6 +33,9 @@ class Mapa extends MasterController
             $markersFront[] = "[$marker[id], $marker[latitud], $marker[longitud], '$text', '$marker[imagen]' ]";
 		}
         
+        $this->setFacebookDescription("Mapa del Paseo de la historieta BA");
+        $this->setSectionTitle("Mapa");
+        
         $this->addContentPage('mapa', array('markers' => $markersFront));
         $this->addFondo(11, 1);
 		$this->show();

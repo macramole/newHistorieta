@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Description of the site" />
+    <meta name="description" content="Paseo de la historieta BA" />
 
     <meta property="og:title" content="<?= $title ?> <?= $sectionTitle ? "| $sectionTitle" : '' ?>"/>
     <meta property="og:url" content="<?= current_url() ?>"/>

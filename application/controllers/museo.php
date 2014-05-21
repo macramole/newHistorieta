@@ -5,7 +5,11 @@ class Museo extends MasterController
 {	
 	public function index()
 	{
-		$this->addContentPage('museo');
+		
+        $this->setFacebookDescription("Museo del humor");
+        $this->setSectionTitle("Museo del humor");
+        
+        $this->addContentPage('museo');
         $this->addFondo(16, 1);
 		$this->show();
 	}
