@@ -5,11 +5,12 @@ class Mapa extends MasterController
 {	
 	public function index() {
 		
-        $this->db->where('latitud <> ""');
-        $markers = $this->db->get('personajes')->result_array();
+        $this->load->model('Personaje');
+        
+        $markers =  Personaje::getListArray(35, 35, 1, 'latitud <> ""'); //$this->db->get('personajes')->result_array();
         $markersFront = array();
         
-        magico_getImageToArray($markers, 'personajes', 35, 35, 1);
+        //magico_getImageToArray($markers, 'personajes', 35, 35, 1);
         magico_getImageToArray($markers, 'personajes', 240, 160, 2, 'imagenGaleria', false, false);
 		
         foreach($markers as $marker) {
@@ -27,7 +28,7 @@ class Mapa extends MasterController
             $text .= "<strong>Dirección</strong>: $marker[direccion]<br />";
             
             if ( $marker[imagenGaleria] )
-                $text .= '<a href="' . site_url('galeria/fotos') . '">ver fotos</a>';
+                $text .= '<a href="' . $marker['url'] . '">ver fotos</a>';
             
             $markersFront[] = "[$marker[id], $marker[latitud], $marker[longitud], '$text', '$marker[imagen]' ]";
 		}

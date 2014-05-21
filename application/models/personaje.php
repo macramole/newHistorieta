@@ -5,8 +5,8 @@ class Personaje extends MY_Model {
 	/*** Datos básicos ***/
 	public static $name = "Personaje";
 	public static $table = "personajes";
-	public static $returnURL = 'autores/';
-    public static $hayPaginaIndividual = false;
+	public static $returnURL = 'galeria/{title}';
+    public static $hayPaginaIndividual = true;
 	
 	function __construct($id = null)
 	{

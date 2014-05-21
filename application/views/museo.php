@@ -1,6 +1,6 @@
 <section class="museo">
 	<style>
-        #share {top:10px;left:210px;}
+        #share {top:700px;}
         #dialogo {position: absolute;top: 193px;left: 175px;font:14pt KiComicRegular;width:700px;height:500px;text-align:left;background: url(../images/marconegroyblanco.png);}
         #dialogo #cont {padding:20px;}
         #dialogo #cont div {margin-top:10px;}
@@ -17,6 +17,7 @@
         #logo_museo {position: absolute;top: 293px;left: 103px;}
         #dialogo_museo {position: absolute;top: 171px;left: 450px;}
         #dire {color:#fff; position: absolute; top:623px; left: 161px;}
+        #paseo { top: 30px;}
     </style>
    <a href="http://www.museos.buenosaires.gob.ar/muhu">
 	<!-- Para KIOSK <a href="javascript:void(0)"> -->

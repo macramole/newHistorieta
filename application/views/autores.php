@@ -1,6 +1,8 @@
 <style>
-#pajarito, #mapa, #share { display: none; }
-#gallery { height: 1000px }
+#pajarito, #mapa { display: none; }
+#gallery { height: 970px }
+#paseo { top: 10px;}
+#share { top: 900px }
 </style>
 <link href="css/jquery.mCustomScrollbar.css" media="screen,print" type="text/css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
@@ -21,7 +23,7 @@
     <div class="autor left">
         <div class="left">
             <div class="avatar">
-                <img src="<?= $autor['imagen'] ?>" alt="Quino">
+                <img src="<?= $autor['imagen'] ?>" alt="<?= $autor['title'] ?>">
             </div>
             <h1 class="titulo"><?= $autor['title'] ?></h1>
             <div class="textoWrapper">
@@ -39,7 +41,7 @@
                 <ul>
                     <?php foreach( $autor['personajes'] as $personaje ) : ?>
                     <li>
-                        <img src="<?= $personaje['imagen'] ?>" alt="Mafalda">
+                        <img src="<?= $personaje['imagen'] ?>" alt="<?= $personaje['title'] ?>">
                         <?php if ( $personaje['latitud'] ) : ?>
                         <a href="<?= site_url('mapa') ?>" class="mapa"><img src="images/ver_mapa.png" alt="Mapa"></a>
                         <?php endif; ?>

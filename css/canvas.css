@@ -49,7 +49,7 @@ height: 96px;}
 #sig {position:absolute;top:473px;left:514px;cursor:pointer;text-align:center;}
 #ant img, #sig img {margin:auto;}
 
-#share {position:absolute; top: 593px; left: 602px;}
+#share {position:absolute; top: 593px; left: 800px;}
 #share img {width: 120px;}
 #tweet {position:absolute;top: 10px;left: 12px; z-index: 2;}
 #fb {position:absolute;top: 10px;left: 64px;z-index: 2;}
@@ -59,6 +59,10 @@ height: 96px;}
 #slider {height: 770px;width:960px;overflow:hidden;}
 .slide {float:left;height:770px;width:960px;overflow:hidden;}
 
+
+#paseo { left: 785px;
+         top:  115px;}
+#paseo img { width: 160px; }
 
 #popup {position: absolute;top: 193px;left: 254px;font:12pt KiComicRegular;z-index:25;
 width:500px;height:300px;text-align:left;background: url(../images/marconegroyblanco.png);
@@ -113,7 +117,7 @@ width:500px;height:300px;text-align:left;background: url(../images/marconegroybl
 section#autores
 {
 	position: absolute;
-    top: 15px;/*129px;*/
+    top: 115px;
     left: 211px;
     text-align: left;
 }
@@ -214,7 +218,7 @@ section#autores div.notaWrapper{
     border-radius: 20px;
     border: 1px solid black;
     width: 99.7%;
-    max-height: 760px;
+    
     overflow: auto;
     
 }
@@ -226,7 +230,7 @@ section#autores .notaInnerWrapper
 {
     margin: 15px auto;
     width: 710px;
-    max-height:720px;
+    max-height:530px;
 }
 
 section#autores div.notaWrapper div.nota h2{

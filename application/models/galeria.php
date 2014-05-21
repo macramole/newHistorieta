@@ -21,6 +21,13 @@ class Galeria extends MY_Model {
 		parent::__construct($id);
 	}
 	
+    function delete() {
+        if ( $this->id == 2 )
+            return;
+        else
+            parent::delete();
+    }
+    
 	function validate()
 	{
 		parent::validate();

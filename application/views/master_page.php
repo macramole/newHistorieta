@@ -33,7 +33,7 @@
             <div id="menu">
                 <a id="m_home" 		href="<?= site_url() ?>"></a>
                 <a id="m_menu" 		href="javascript:void(0)"></a>
-                <a id="m_foto" 		href="<?= site_url('galeria/fotos') ?>"></a>
+                <a id="m_foto" 		href="<?= site_url('galeria') ?>"></a>
                 <a id="m_wallpaper" href="<?= site_url('galeria/wallpapers') ?>"></a>
                 <a id="m_autores" 	href="<?= site_url('autores') ?>"></a>
                 <a id="m_museo" 	href="<?= site_url('museo') ?>"></a>
@@ -52,6 +52,8 @@
                 <img id="vuelo" src="images/pajarito-animado.gif"/>
             </a>
 
+            <a id="paseo" href="#"><img src="images/logo262.png"/></a>
+            
             <mp:Content />
 
         </div>    

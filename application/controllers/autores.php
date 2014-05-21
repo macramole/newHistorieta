@@ -39,12 +39,17 @@ class Autores extends MasterController
                 $this->setFacebookDescription($autor['title'] . ' // ' . $entrada['title']);
             }
             
+            $this->config->set_item('image_default', 'default_image.gif');
             magico_getImageToRow($autor, 'autores', 128, 165);
-            $autor['personajes'] = magico_getList('personajes', 112, 116, "idAutor = '$autor[id]'", 'weight ASC');
+            
+            $this->load->model('Personaje');
+            
+            
+            $autor['personajes'] = Personaje::getListArray(112, 116, 0, "idAutor = '$autor[id]'", 'weight ASC');
             
             if ( !$entrada ) {
                 $this->load->model('Entrada');
-                $autor['entradas'] = Entrada::getListArray(null, null, "idAutor = '$autor[id]'");
+                $autor['entradas'] = Entrada::getListArray(null, null, null, "idAutor = '$autor[id]'");
             } else {
                 $autor['entradas'][] = $entrada;
                 $autor['entradaUnica'] = true;

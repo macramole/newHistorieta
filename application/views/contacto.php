@@ -1,6 +1,9 @@
 <section id="contacto">
     <style>
-        #share {top:10px;left:210px;}
+        #share {
+            top: 720px;
+            left: 750px;
+        }
         #dialogo {position: absolute;top: 193px;left: 175px;font:14pt KiComicRegular;width:700px;height:515px;text-align:left;background: url(images/marconegroyblanco.png);}
         #dialogo #cont {padding:20px;}
         #dialogo #cont div {margin-top:10px;}
@@ -13,6 +16,9 @@
         #msg {width: 650px;height: 190px;}
         #tu_nombre, #correo {width: 350px;}
         #pajarito {top: 25px;left: 364px;}
+        #paseo { display: none; }
+        #gallery { height: 790px }
+        
     </style>
     
     <div id="dialogo"><div id="cont">

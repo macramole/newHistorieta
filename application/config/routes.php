@@ -48,7 +48,11 @@ $route['magico_logout'] = $route['default_controller'] . '/magico_logout';
 $route['abm/(:any)/(:any)'] = 'abm/$1/$2';
 
 $route['inauguraciones'] = $route['default_controller'] . '/inauguraciones';
-$route['galeria/(:any)'] = 'galeria/galerias';
+
+$route['galeria'] = 'galeriacontroller';
+$route['galeria/wallpapers'] = 'galeriacontroller/wallpapers';
+$route['galeria/(:any)'] = 'galeriacontroller/galerias';
+
 $route['autores/(:any)'] = 'autores/autor';
 
 /*// example: '/en/about' -> use controller 'about'
