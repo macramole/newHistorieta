@@ -321,13 +321,19 @@ section#autores .verTodas:hover
     text-decoration: underline;
 }
 
-section#autores .head span.fecha
+section#autores .head a.fecha
 {
     float: right;
     margin-top: 15px;
     display: block;
     font-size: 12px;
     color: #999;
+    text-decoration: none;
+}
+
+section#autores .head a.fecha:hover
+{
+    text-decoration: underline;
 }
 
 section#sectionMapa .infoWindow

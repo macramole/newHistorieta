@@ -12,7 +12,7 @@ class Autor extends MY_Model {
 		/*** Fields ***/
 		$this->fields['title'] = new Textbox('Nombre');
 		$this->fields['imagenPrincipal'] = new FileUpload(0, false, 'Imagen principal');
-		$this->fields['imagenCuerpo'] = new FileUpload(1, false, 'Imagen cuerpo');
+		//$this->fields['imagenCuerpo'] = new FileUpload(1, false, 'Imagen cuerpo');
         $this->fields['personajes'] = new ForeignModel('Personaje');
         $this->fields['texto'] = new TextEditor();
         //$this->fields['bio'] = new TextEditor();
@@ -21,8 +21,8 @@ class Autor extends MY_Model {
 		$this->fields['imagenPrincipal']->dimensionesRecomendadas = '128x165';
         $this->fields['imagenPrincipal']->isImage(1);
                 
-		$this->fields['imagenCuerpo']->dimensionesRecomendadas = '690x427';
-        $this->fields['imagenCuerpo']->isImage(1);
+		//$this->fields['imagenCuerpo']->dimensionesRecomendadas = '690x427';
+        //$this->fields['imagenCuerpo']->isImage(1);
         
         /*$this->fields['bio']->extraTags = array('Título' => 'h2', 'Subtítulo' => 'h3');
         $this->fields['bio']->allowImages = true;*/

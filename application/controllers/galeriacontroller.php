@@ -57,6 +57,7 @@ class GaleriaController extends MasterController
         $galerias = array( Galeria::getRowArray(2) );
         
         $galeria = $this->getGaleria(2, 'galerias');
+        $galeria['type'] = 'Galeria';
         
         $this->setFacebookDescription("Galeria de $galeria[title] en el Paseo de la historieta BA");
         $this->setFacebookImage($galeria['imagenes'][0]);

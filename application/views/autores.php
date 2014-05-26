@@ -66,7 +66,7 @@
                 <div class="info">
                     <div class="head">
                         <h2><?= $entrada['title'] ?></h2>
-                        <span class="fecha"><?= date('d/m/Y', strtotime($entrada['fecha'])) ?></span>
+                        <a class="fecha" href="<?= $entrada['url'] ?>"><?= date('d/m/Y', strtotime($entrada['fecha'])) ?></a>
                     </div>
                     <div class="clear"></div>
                     <div class="bioWrapper">

@@ -137,7 +137,7 @@ function dibujarEstacion(){
 
 		//Post slide
 		if(actual==0) { //mafalda
-			$('#globa_personaje').css({top:'169px',left:'225px'}).html('<img src="images/globa_mafalda.png" width="350"/>');
+			$('#globa_personaje').css({top:'169px',left:'409px'}).html('<img src="images/globa_mafalda.png" width="350"/>');
 			$('#personaje').css({top:'340px',left:'330px'}).html('<img src="images/mafalda.png"/>').show();
 			$('#texto_home').show();
 		}

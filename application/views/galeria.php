@@ -1,11 +1,19 @@
 <section class="galeria">
 	<style>
-        #share { top: 700px }
+        #share { display: none; }
+        #shareCopy { 
+            float: right;
+            position: relative;
+            right: 30px;
+            top: 10px;
+        }
+        #shareCopy img { width: 120px; }
+        #gallery { height: 830px }
         #galleria {width: 755px;height: 498px;}
         #ppal { position: absolute;top: 150px;left: 183px; }
         #ppal ul { list-style: none; padding: 0; margin: 0 ; overflow: hidden; float: left; }
         #ppal ul li { float: left; margin-right: 10px }
-        #ppal ul a { color: black; text-decoration: none; }
+        #ppal ul a { color: black; text-decoration: none; font-size: 16px }
         #ppal ul a:hover { text-decoration: underline; }
         #categoriasWrapper { 
             background-color: #FFF;
@@ -17,6 +25,7 @@
         #ppal ul a.active { color: #F2629D }
         #pajarito {display: none}
         #paseo { top: 30px;}
+        #imgComparti { display: inline-block; margin-top: 10px; }
     </style>
     
     <div id="ppal">
@@ -50,6 +59,17 @@
         </div>
         <div class="clear"></div>
 		<div id="galleria"></div>
+         
+        <?php if ( $galeriaSeleccionada['id'] != 2 ) :  ?> 
+        <a href="https://facebook.com/construccionciudadanaba" id="imgComparti" target="_blank">
+            <img src="images/boton_comparti.jpg" />
+        </a>
+        <?php endif; ?>
+        
+        <div id="shareCopy"><img src="images/share.png"/>
+            <a id="tweet" href="https://twitter.com/CiudadaniaBA" target="_blank" ><img src="images/transparent.png"/></a>
+            <a id="fb" href="https://facebook.com/construccionciudadanaba" target="_blank" ><img src="images/transparent.png"/></a>
+        </div>	
 	</div>
     <script>
         $( function() {
