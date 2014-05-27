@@ -3,7 +3,8 @@
 @font-face {
     font-family: 'KiComicRegular';
     src: url('../fonts/kicomic_-webfont.eot');
-    src: url('../fonts/kicomic_-webfont.eot?#iefix') format('embedded-opentype'),
+    src: url('../fonts/kicomic_-webfont.svg#ki_comicregular') format('svg'),
+         url('../fonts/kicomic_-webfont.eot?#iefix') format('embedded-opentype'),
          url('../fonts/kicomic_-webfont.woff') format('woff'),
          url('../fonts/kicomic_-webfont.ttf') format('truetype');
     font-weight: normal;
@@ -84,7 +85,6 @@ width:500px;height:300px;text-align:left;background: url(../images/marconegroybl
 #menuAutores ul li{
 	font-size:15px;
     width:100px;
-	height:16px;
 	background-color:#abe1e7;
 	border-top-color:#81d2db;
 	border-top-style:solid;
@@ -192,7 +192,7 @@ section#autores div.autor div.left{
 }
 section#autores div.autor div.left .textoWrapper {
     float:left;
-	width:300px;
+	width:350px;
 	margin-left:20px;
 	margin-top:5px;
     padding-top: 5px;
