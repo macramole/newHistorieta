@@ -30,6 +30,8 @@ class Mapa extends MasterController
             if ( $marker[imagenGaleria] )
                 $text .= '<a href="' . $marker['url'] . '">ver fotos</a>';
             
+            $text = str_replace("'", '', $text);
+            
             $markersFront[] = "[$marker[id], $marker[latitud], $marker[longitud], '$text', '$marker[imagen]' ]";
 		}
         

@@ -14,7 +14,7 @@ class Galeria extends MY_Model {
 		$this->fields['imagenes'] = new FileUpload();
 		
 		/*** Extras ***/	
-		$this->fields['imagenes']->dimensionesRecomendadas = '650x430';
+		$this->fields['imagenes']->dimensionesRecomendadas = '735x428';
 		
 		$this->setListableFields(array('title'));
 		
